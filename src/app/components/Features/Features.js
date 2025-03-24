@@ -1,0 +1,56 @@
+import styles from './styles.module.css';
+
+
+import USP from '../UI/Card/USP';
+import SectionTitle from '../UI/SectionTitle/SectionTitle';
+
+function Features() {
+
+    const USPs = [
+        {
+            title: "Easy Boking",
+            description: "Quick and easy bookings with simple process",
+            icon: "/images/usp.png"
+        },
+        {
+            title: "Customizable",
+            description: "Customize your itinerary to suit your needs",
+            icon: "/images/usp.png"
+        },
+        {
+            title: "Flexible",
+            description: "Bookings can be made on any day of the week",
+            icon: "/images/usp.png"
+        },
+        {
+            title: "Humanized Process",
+            description: "We've got you covered from booking to beyond",
+            icon: "/images/usp.png"
+        }
+    ]
+
+    return ( 
+        <section id={styles.features}>
+            <div className={styles.featuresBox}>
+                <SectionTitle
+                    title="Making travel /s simple for you\s"
+                    description="From booking to beyond, we've got you covered"
+                    variant="center"
+                ></SectionTitle>
+
+                <div className={styles.featuresContent}>
+                    {USPs.map((item, index) => (
+                        <USP
+                            key={index}
+                            title={item.title}
+                            description={item.description}
+                            icon={item.icon}
+                        />
+                    ))}
+                </div>
+            </div>
+        </section>
+     );
+}
+
+export default Features;
