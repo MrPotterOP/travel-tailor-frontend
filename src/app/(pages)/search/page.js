@@ -1,14 +1,15 @@
 // app/search/page.js
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
-import SearchResult from '../../components/SearchResult/SearchResult'; 
-import styles from './styles.module.css'; 
-
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import SearchResult from '../../components/SearchResult/SearchResult';
+import styles from './styles.module.css';
+import Spinner from '@/app/components/UI/Spinner/Spinner';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
-// Base paths and titles (remain the same)
+// Base paths and titles
 const BASE_PATHS = {
   blogs: '/blogs',
   destinations: '/destinations',
@@ -23,16 +24,28 @@ const CATEGORY_TITLES = {
   tours: 'Tours',
 };
 
-export default function SearchPage() {
+// Separate the inner component that uses useSearchParams
+function SearchPageContent() {
   const router = useRouter();
+  
+  // Import useSearchParams inside the component that's wrapped with Suspense
+  const { useSearchParams } = require('next/navigation');
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
 
-  const [searchQuery, setSearchQuery] = useState(initialQuery); // Input state
-  const [submittedQuery, setSubmittedQuery] = useState(initialQuery); // Query used for the search results being shown
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [submittedQuery, setSubmittedQuery] = useState(initialQuery);
   const [searchResults, setSearchResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // Effect to perform search if initialQuery exists on load
+  React.useEffect(() => {
+    if (initialQuery) {
+      performSearch(initialQuery);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run only once on mount
 
   // Function to fetch search results
   const performSearch = async (query) => {
@@ -48,14 +61,14 @@ export default function SearchPage() {
 
     setIsLoading(true);
     setError(null);
-    setSubmittedQuery(query); 
+    setSubmittedQuery(query);
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_PREFIX}/api/apihome/search/${encodeURIComponent(query)}`, {
         headers: {
           'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
         }
-      });;
+      });
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -73,18 +86,10 @@ export default function SearchPage() {
     }
   };
 
-  // Effect to perform search if initialQuery exists on load
-  useEffect(() => {
-    if (initialQuery) {
-      performSearch(initialQuery);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Run only once on mount
-
   // Handle form submission
   const handleSubmit = (event) => {
-    event.preventDefault(); 
-    performSearch(searchQuery.trim()); 
+    event.preventDefault();
+    performSearch(searchQuery.trim());
   };
 
   // Handle input change
@@ -97,16 +102,15 @@ export default function SearchPage() {
 
   return (
     <div className={styles.searchContainer}>
-      {/* Removed separate page title, search bar acts as primary focus */}
       <form onSubmit={handleSubmit} className={styles.formWrapper}>
-        <div className={styles.searchIcon}> {/* Optional div wrapper if needed */}
-            <Image
-                src="/images/search.png" // Ensure this path is correct
-                alt="" // Decorative icon, alt can be empty
-                width={20} // Adjust size as needed
-                height={20} // Adjust size as needed
-                aria-hidden="true" // Hide from screen readers
-            />
+        <div className={styles.searchIcon}>
+          <Image
+            src="/images/search.png"
+            alt=""
+            width={20}
+            height={20}
+            aria-hidden="true"
+          />
         </div>
         <input
           type="search"
@@ -160,9 +164,18 @@ export default function SearchPage() {
 
         {/* Initial state message (only show if no query submitted and not loading) */}
         {!submittedQuery && !isLoading && !error && (
-            <p className={styles.promptMessage}>Enter a term and click Search.</p>
+          <p className={styles.promptMessage}>Enter a term and click Search.</p>
         )}
       </div>
     </div>
+  );
+}
+
+// Main component that applies Suspense boundary correctly
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<Spinner />}>
+      <SearchPageContent />
+    </Suspense>
   );
 }

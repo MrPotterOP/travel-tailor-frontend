@@ -4,9 +4,13 @@ import Contact from '@/app/components/Form/Contact';
 import StickyContact from '@/app/components/Form/StickyContact';
 import styles from './styles.module.css'; // Page-specific styles for layout
 
+import { Suspense } from 'react';
+import Spinner from '@/app/components/UI/Spinner/Spinner';
+
 const EnquiryPage = () => {
   return (
-    // Applying layout styles via CSS Module
+
+    <Suspense fallback={<Spinner />}>
     <div className={styles.pageWrapper}> {/* Use a wrapper class */}
       <div className={styles.pageContainer}> {/* Use a container for max-width and padding */}
         <div className={styles.formColumn}>
@@ -17,6 +21,7 @@ const EnquiryPage = () => {
         </aside>
       </div>
     </div>
+    </Suspense>
   );
 };
 

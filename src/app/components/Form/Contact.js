@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 
 import Spinner from '../UI/Spinner/Spinner';
@@ -12,11 +13,7 @@ const Contact = () => {
 
     // Wrap serchParams in Suspense to prevent SSR errors
     const searchParams = useSearchParams();
-    const [src, setSrc] = useState(searchParams.get('src'));
-
-  useEffect(() => {
-      setSrc(searchParams.get('src'));
-    }, [searchParams]);
+    const src = searchParams.get('src');
 
   // ... (useState, handlers, validation logic - ALL SAME AS BEFORE) ...
    const [formData, setFormData] = useState({
@@ -159,6 +156,7 @@ const Contact = () => {
 
   // --- The return JSX remains the same, but ensure the button uses the correct global class ---
    return (
+    <Suspense fallback={<Spinner />}>
     <form onSubmit={handleSubmit} className={styles.form} noValidate>
         <h2 className={styles.formTitle}>Plan Your Trip</h2>
         <p className={styles.formSubtitle}>Fill in the details below and we&#39;ll get back to you shortly.</p>
@@ -278,6 +276,7 @@ const Contact = () => {
        )}
 
     </form>
+    </Suspense>
   );
 };
 
