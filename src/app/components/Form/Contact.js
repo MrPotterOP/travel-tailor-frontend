@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 import { useSearchParams } from 'next/navigation';
@@ -10,9 +10,13 @@ import Spinner from '../UI/Spinner/Spinner';
 
 const Contact = () => {
 
+    // Wrap serchParams in Suspense to prevent SSR errors
     const searchParams = useSearchParams();
+    const [src, setSrc] = useState(searchParams.get('src'));
 
-    const src = searchParams.get('src');
+  useEffect(() => {
+      setSrc(searchParams.get('src'));
+    }, [searchParams]);
 
   // ... (useState, handlers, validation logic - ALL SAME AS BEFORE) ...
    const [formData, setFormData] = useState({

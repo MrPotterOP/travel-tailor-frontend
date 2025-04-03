@@ -1,4 +1,4 @@
-// app/enquire/page.js
+'use client';
 import React from 'react';
 import Contact from '@/app/components/Form/Contact';
 import StickyContact from '@/app/components/Form/StickyContact';
