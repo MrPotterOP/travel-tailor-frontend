@@ -39,7 +39,7 @@ function TripDays({
         <section id={styles.tripDays}>
             <div className={styles.tripDaysBox}>
                 {visibleDays.map((item, index) => (
-                    <div key={item.id} className={styles.dayContainer}>
+                    <div key={index} className={styles.dayContainer}>
                         <Day
                             brief={item.brief}
                             imgUrl={`${process.env.NEXT_PUBLIC_URL_PREFIX}${item.imgUrl}`}

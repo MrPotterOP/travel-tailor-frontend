@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 import styles from './styles.module.css';
 import Link from 'next/link';
@@ -12,6 +13,8 @@ import Button from '../UI/Button/Button';
 
 
 function Navbar() {
+
+    const pathname = usePathname();
 
     const navItems = [
         {
@@ -28,8 +31,8 @@ function Navbar() {
             href: "/calendar"
         },
         {
-            name: "Tours",
-            href: "/tours"
+            name: "Experiences",
+            href: "/experiences"
         },
         {
             name: "About Us",
@@ -58,11 +61,11 @@ function Navbar() {
                 {/* Nav Items Desktop */}
                 <div className={styles.navItemsDesktop}>
                     {navItems.map((item, index) => (
-                        <Link key={index} href={item.href} className={styles.navItem}>
-                                {item.icon && <Image src={item.icon} alt={item.name} width={24} height={24} />}
-                                <p>{item.name}</p>
-                        </Link>
-                    ))}
+                            <Link key={index} href={item.href} className={`${styles.navItem} ${(pathname.startsWith(item.href))? styles.active : ''}`}>
+                                    {item.icon && <Image src={item.icon} alt={item.name} width={24} height={24} />}
+                                    <p>{item.name}</p>
+                            </Link>
+                        ))}
                 </div>
                 
                 <div className={styles.navCta}>
@@ -103,3 +106,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

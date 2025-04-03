@@ -7,12 +7,12 @@ function Experiences({
 }) {
 
 
-    const ExperienceCard = ({title, slug, displayImgUrl}) =>{
+    const ExperienceCard = ({title, slug, imgUrl}) =>{
         return (
             <Link href={`/experiences/${slug}`} className={styles.expCard}>
                 <div className={styles.experiencesBg}>
                     <Image
-                        src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${displayImgUrl}`}
+                        src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
                         alt="Experience"
                         width={500}
                         height={660}
@@ -31,7 +31,7 @@ function Experiences({
                 {
                     expereinces.map(experience => (
                         <ExperienceCard 
-                            key={experience.id}
+                            key={experience.title}
                             {...experience}
                         />
                     ))

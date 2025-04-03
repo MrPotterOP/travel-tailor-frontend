@@ -9,8 +9,14 @@ function Brief({
     description = "",
     className = "",
     imgUrl = "/images/banner.jpg",
+    url = "/contact",
     ...props
 }) {
+
+    if (!imgUrl) {
+        imgUrl = "/uploads/failed_bc13306774.png";
+    }
+
     return ( 
         <section className={styles.brief}>
                 <div className={styles.briefBox}>
@@ -19,7 +25,7 @@ function Brief({
                         <p className={styles.briefDescription}>{description}</p>
                     </div>
 
-                    <Link className={styles.briefImgBox} href="/contact">
+                    <Link className={styles.briefImgBox} href={url}>
                         <Image
                             src={imgUrl}
                             alt={title}

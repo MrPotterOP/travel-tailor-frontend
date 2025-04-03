@@ -57,7 +57,7 @@ function MomentsHome({
                 ></SectionTitle>
 
                 <div className={styles.moments}>
-                    <InfiniteShapeCarousel images={monents} speed={110} gap={24} />
+                    <InfiniteShapeCarousel images={monents} speed={20} gap={24} />
                 </div>
             </div>
         </section>

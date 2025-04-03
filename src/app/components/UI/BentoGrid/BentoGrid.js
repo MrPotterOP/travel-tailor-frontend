@@ -23,7 +23,7 @@ export default function BentoGrid({ experiences = [] }) {
   return (
     <div className={`${styles.grid} ${styles[`grid${count}`]}`}>
       {experiences.map(({ title, slug, imgUrl }, index) => (
-        <Link href={`/${slug}`} key={slug} className={styles.card} style={{ gridArea: areaMapping[index] }}>
+        <Link href={`/experiences/${slug}`} key={slug} className={styles.card} style={{ gridArea: areaMapping[index] }}>
           <div className={styles.imageWrapper}>
             <Image
               src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}

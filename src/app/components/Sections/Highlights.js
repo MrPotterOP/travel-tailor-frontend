@@ -12,6 +12,7 @@ function Highlights({
     title = "Why India? /nUnlock a world of wonders",
     brief = "India is a country of diverse cultures, traditions, and languages. It is a melting pot of people from different backgrounds, religions, and traditions. India is also a country of innovation and progress. It has a rich history and a vibrant culture that continues to evolve and change. to explore India's diversity and uniqueness, we invite you to visit India and experience its wonders. with India, you can explore its rich history, culture, and traditions, and discover its vibrant and dynamic culture.",
     imgUrl = "/uploads/annie_spratt_W_Cgio_Ec_EV_Nc_unsplash_b0a9e215d0.jpg",
+    url="/contact",
     ...props
 }) {
     return ( 
@@ -25,7 +26,7 @@ function Highlights({
 
                     <div className={styles.highlightBtnBox}>
                         <Button
-                            href='/contact'
+                            href={url}
                             varient='outline'
                             className={styles.highlightBtn}
                         >Start planning</Button>

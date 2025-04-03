@@ -10,6 +10,11 @@ function Day({
     day,
     ...props
 }) {
+
+    if (!imgUrl) {
+        imgUrl = "/uploads/failed_bc13306774.png";
+    }
+
     return ( 
         <div className={styles.day}>
             <div className={styles.dayImgBox}>

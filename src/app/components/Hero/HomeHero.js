@@ -13,29 +13,30 @@ import Varients from '../../lib/varients';
 function HomeHero({ heroData }) {
 
   // Default hero data if none provided
-  heroData = [
-    {
-      "id": 1,
-      "title": "A Spiritual Experience of The Himalayas",
-      "description": "Hike through the foothills of the Himalayas and embrace the spirituality of Northern India.",
-      "heroImgUrl": "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
-      "url": "/destinations/maldives"
-    },
-    {
-      "id": 2,
-      "title": "A Spiritual Experience of The Himalayas 2",
-      "description": "Hike through the foothills of the Himalayas and embrace the spirituality of Northern India.2",
-      "heroImgUrl": "/uploads/beautiful_picture_b7d7a198b7.jpeg",
-      "url": "/tours/inca-trail-to-machu-picchu-trek"
-    },
-    {
-      "id": 3,
-      "title": "A Spiritual Experience of The Himalayas 3",
-      "description": "Hike through the foothills of the Himalayas and embrace the spirituality of Northern India.3",
-      "heroImgUrl": "/uploads/evgeni_tcherkasski_FET_2_QY_Dj_DXE_unsplash_743b4d9b52.jpg",
-      "url": "/destinations/machu-picchu"
-    }
-  ];
+  // heroData = [
+  //   {
+  //     "id": 1,
+  //     "title": "A Spiritual Experience of The Himalayas",
+  //     "description": "Hike through the foothills of the Himalayas and embrace the spirituality of Northern India.",
+  //     "imgUrl": "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
+  //     "url": "/destinations/maldives"
+  //   },
+  //   {
+  //     "id": 2,
+  //     "title": "A Spiritual Experience of The Himalayas 2",
+  //     "description": "Hike through the foothills of the Himalayas and embrace the spirituality of Northern India.2",
+  //     "imgUrl": "/uploads/beautiful_picture_b7d7a198b7.jpeg",
+  //     "url": "/tours/inca-trail-to-machu-picchu-trek"
+  //   },
+  //   {
+  //     "id": 3,
+  //     "title": "A Spiritual Experience of The Himalayas 3",
+  //     "description": "Hike through the foothills of the Himalayas and embrace the spirituality of Northern India.3",
+  //     "imgUrl": "/uploads/evgeni_tcherkasski_FET_2_QY_Dj_DXE_unsplash_743b4d9b52.jpg",
+  //     "url": "/destinations/machu-picchu"
+  //   }
+  // ];
+  
 
   const [current, setCurrent] = useState(0);
   const [hero, setHero] = useState(heroData[0]);
@@ -62,7 +63,7 @@ function HomeHero({ heroData }) {
         const img = document.createElement('link');
         img.rel = 'preload';
         img.as = 'image';
-        img.href = `${process.env.NEXT_PUBLIC_URL_PREFIX}${item.heroImgUrl}`;
+        img.href = `${process.env.NEXT_PUBLIC_URL_PREFIX}${item.imgUrl}`;
         document.head.appendChild(img);
       });
       imagesPreloaded.current = true;
@@ -90,14 +91,14 @@ function HomeHero({ heroData }) {
         <AnimatePresence mode="wait">
           <motion.div
             className={styles.heroHomeImgContainer}
-            key={hero.heroImgUrl}
+            key={hero.imgUrl}
             initial={{ opacity: 0, filter: 'brightness(0.2)' }}
             animate={{ opacity: 1, filter: 'brightness(0.8)' }}
             exit={{ opacity: 0, filter: 'brightness(0.2)' }}
             transition={{ duration: 0.6 }}
           >
             <Image
-              src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${hero.heroImgUrl}`}
+              src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${hero.imgUrl}`}
               alt={hero.title}
               width={1400}
               height={1000}
@@ -137,12 +138,12 @@ function HomeHero({ heroData }) {
             <div className={styles.progressBars}>
               {heroData.map((item, index) => (
                 <div
-                  key={item.id}
+                  key={index}
                   className={styles.progressBar}
                   onClick={() => handleClick(index)}
                 >
                   <div
-                    key={item.id + index}
+                    key={item.title}
                     className={`${styles.progress} ${
                       current === index ? styles.active : ''
                     } ${current > index ? styles.filled : ''}`}

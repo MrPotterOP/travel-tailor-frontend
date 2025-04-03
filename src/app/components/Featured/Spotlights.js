@@ -14,8 +14,8 @@ function Spotlights({
                         key={index}
                         title={spotlight.title}
                         description={spotlight.description}
-                        displayImgUrl={spotlight.displayImgUrl}
-                        url={spotlight.url}
+                        imgUrl={spotlight.imgUrl}
+                        url={spotlight.link}
                         btn="Explore more"
                     />
                 ))

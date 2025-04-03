@@ -12,16 +12,21 @@ function Tour({
     className = "",
     type = "tours",
     btn = "Explore more",
-    displayImgUrl,
+    imgUrl,
     tag,
     ...props
 }) {
+    
+    if (!imgUrl) {
+        imgUrl = "/uploads/failed_bc13306774.png";
+    }
+
     return ( 
         <Link href={`/${type}/${slug}`} className={`${styles.tour} ${className}`}>
             
             <div className={styles.tourBg}>
                 <Image 
-                    src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${displayImgUrl}`}
+                    src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
                     alt="Tour"
                     width={600}
                     height={760}

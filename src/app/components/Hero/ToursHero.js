@@ -8,23 +8,7 @@ import ArrowBtn from '../UI/Button/ArrowBtn';
 import Varients from '../../lib/varients';
 
 function ToursHero({ heroData }) {
-  heroData = heroData || [
-    {
-      id: 1,
-      title: "Unwind on Pristine Beaches. South Goas Coastal Bliss",
-      heroImgUrl: "/uploads/sylwia_bartyzel_e_U4pip_U_8_HA_unsplash_641b698718.jpg",
-    },
-    {
-      id: 2,
-      title: "Explore the Serenity of the Andaman Islands",
-      heroImgUrl: "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
-    },
-    {
-      id: 3,
-      title: "Discover the Backwaters of Kerala",
-      heroImgUrl: "/uploads/sylwia_bartyzel_e_U4pip_U_8_HA_unsplash_641b698718.jpg",
-    },
-  ];
+  
 
   const [current, setCurrent] = useState(0);
   const [hero, setHero] = useState(heroData[0]);
@@ -59,7 +43,7 @@ function ToursHero({ heroData }) {
         const img = document.createElement('link');
         img.rel = 'preload';
         img.as = 'image';
-        img.href = `${process.env.NEXT_PUBLIC_URL_PREFIX}${item.heroImgUrl}`;
+        img.href = `${process.env.NEXT_PUBLIC_URL_PREFIX}${item.imgUrl}`;
         document.head.appendChild(img);
       });
       imagesPreloaded.current = true;
@@ -84,14 +68,14 @@ function ToursHero({ heroData }) {
         <AnimatePresence mode="wait">
           <motion.div
             className={styles.toursHeroImgContainer}
-            key={hero.heroImgUrl}
+            key={hero.imgUrl}
             initial={{ opacity: 0, filter: 'brightness(0.4)' }}
             animate={{ opacity: 1, filter: 'brightness(0.8)' }}
             exit={{ opacity: 0, filter: 'brightness(0.4)' }}
             transition={{ duration: 0.4 }}
           >
             <Image
-              src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${hero.heroImgUrl}`}
+              src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${hero.imgUrl}`}
               alt={hero.title}
               width={1400}
               height={1000}

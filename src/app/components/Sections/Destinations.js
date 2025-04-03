@@ -11,141 +11,19 @@ import parsePrice from '@/app/util/parsePrice';
 function Destinations({
     destinations = [
         {
-            "id": 9,
-            "documentId": "x17axnljyeba2pzkkbmd24lu",
-            "slug": "bali",
-            "title": "Bali",
-            "Place": "Bali",
-            "brief": "Experience the tropical beauty of Bali with its lush landscapes, pristine beaches, and vibrant cultural heritage",
-            "createdAt": "2025-03-08T08:24:58.237Z",
-            "updatedAt": "2025-03-08T08:24:58.237Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Discover the island of gods and its magical treasures",
-            "amount": 15000,
-            "displayImgUrl": "/uploads/sylwia_bartyzel_e_U4pip_U_8_HA_unsplash_641b698718.jpg",
-        },
-        {
-            "id": 7,
-            "documentId": "e954jyp4hkmf15zufe4w6tvr",
-            "slug": "santorini",
-            "title": "Santorini",
-            "Place": "Santorini, Greece",
-            "brief": "Explore the stunning white-washed buildings and breathtaking views of the Aegean Sea on this Greek island paradise",
-            "createdAt": "2025-03-08T08:21:24.476Z",
-            "updatedAt": "2025-03-08T08:21:24.476Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Experience the iconic blue domes and spectacular sunsets",
-            "amount": 25000,
-            "displayImgUrl": "/uploads/aimanness_harun_Ac_W_Kb_RFDX_9_E_unsplash_55b4d719f7.jpg"
-        },
-        {
-            "id": 1,
-            "documentId": "o0qs44d75c8e06aiw75v5dfn",
-            "slug": "paris-city-of-lights",
-            "title": "Paris",
-            "Place": "Paris, France",
-            "brief": "Immerse yourself in the romance and elegance of Paris with its iconic landmarks, exquisite cuisine, and artistic treasures",
-            "createdAt": "2025-03-08T07:44:39.092Z",
-            "updatedAt": "2025-03-08T07:44:39.092Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Explore the cultural heart of Europe's most romantic city",
-            "amount": "18000",
-            "displayImgUrl": "/uploads/srivatsan_balaji_dz42hvd61_BE_unsplash_dd7cf8970a.jpg"
-        },
-        {
-            "id": 9,
-            "documentId": "x17axnljyeba2pzkkbmd24lu",
-            "slug": "bali",
-            "title": "Bali",
-            "Place": "Bali",
-            "brief": "Experience the tropical beauty of Bali with its lush landscapes, pristine beaches, and vibrant cultural heritage",
-            "createdAt": "2025-03-08T08:24:58.237Z",
-            "updatedAt": "2025-03-08T08:24:58.237Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Discover the island of gods and its magical treasures",
-            "amount": "15000",
-            "displayImgUrl": "/uploads/sylwia_bartyzel_e_U4pip_U_8_HA_unsplash_641b698718.jpg",
-        },
-        {
-            "id": 7,
-            "documentId": "e954jyp4hkmf15zufe4w6tvr",
-            "slug": "santorini",
-            "title": "Santorini",
-            "Place": "Santorini, Greece",
-            "brief": "Explore the stunning white-washed buildings and breathtaking views of the Aegean Sea on this Greek island paradise",
-            "createdAt": "2025-03-08T08:21:24.476Z",
-            "updatedAt": "2025-03-08T08:21:24.476Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Experience the iconic blue domes and spectacular sunsets",
-            "amount": "25000",
-            "displayImgUrl": "/uploads/aimanness_harun_Ac_W_Kb_RFDX_9_E_unsplash_55b4d719f7.jpg"
-        },
-        {
-            "id": 1,
-            "documentId": "o0qs44d75c8e06aiw75v5dfn",
-            "slug": "paris-city-of-lights",
-            "title": "Paris",
-            "Place": "Paris, France",
-            "brief": "Immerse yourself in the romance and elegance of Paris with its iconic landmarks, exquisite cuisine, and artistic treasures",
-            "createdAt": "2025-03-08T07:44:39.092Z",
-            "updatedAt": "2025-03-08T07:44:39.092Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Explore the cultural heart of Europe's most romantic city",
-            "amount": "18000",
-            "displayImgUrl": "/uploads/srivatsan_balaji_dz42hvd61_BE_unsplash_dd7cf8970a.jpg"
-        },
-        {
-            "id": 9,
-            "documentId": "x17axnljyeba2pzkkbmd24lu",
-            "slug": "bali",
-            "title": "Bali",
-            "Place": "Bali",
-            "brief": "Experience the tropical beauty of Bali with its lush landscapes, pristine beaches, and vibrant cultural heritage",
-            "createdAt": "2025-03-08T08:24:58.237Z",
-            "updatedAt": "2025-03-08T08:24:58.237Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Discover the island of gods and its magical treasures",
-            "amount": "15000",
-            "displayImgUrl": "/uploads/sylwia_bartyzel_e_U4pip_U_8_HA_unsplash_641b698718.jpg",
-        },
-        {
-            "id": 7,
-            "documentId": "e954jyp4hkmf15zufe4w6tvr",
-            "slug": "santorini",
-            "title": "Santorini",
-            "Place": "Santorini, Greece",
-            "brief": "Explore the stunning white-washed buildings and breathtaking views of the Aegean Sea on this Greek island paradise",
-            "createdAt": "2025-03-08T08:21:24.476Z",
-            "updatedAt": "2025-03-08T08:21:24.476Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Experience the iconic blue domes and spectacular sunsets",
-            "amount": "25000",
-            "displayImgUrl": "/uploads/aimanness_harun_Ac_W_Kb_RFDX_9_E_unsplash_55b4d719f7.jpg"
-        },
-        {
-            "id": 1,
-            "documentId": "o0qs44d75c8e06aiw75v5dfn",
-            "slug": "paris-city-of-lights",
-            "title": "Paris",
-            "Place": "Paris, France",
-            "brief": "Immerse yourself in the romance and elegance of Paris with its iconic landmarks, exquisite cuisine, and artistic treasures",
-            "createdAt": "2025-03-08T07:44:39.092Z",
-            "updatedAt": "2025-03-08T07:44:39.092Z",
-            "publishedAt": null,
-            "locale": "en",
-            "description": "Explore the cultural heart of Europe's most romantic city",
-            "amount": "18000",
-            "displayImgUrl": "/uploads/srivatsan_balaji_dz42hvd61_BE_unsplash_dd7cf8970a.jpg"
-        }
-
+			"slug": "maldives",
+			"title": "Maldives",
+			"description": "Turquoise waters, luxury resorts, vibrant coral reefs",
+			"imgUrl": "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
+			"tag": "20000"
+		},
+		{
+			"slug": "serengeti-national-park",
+			"title": "Serengeti National Park",
+			"description": "Endless plains, Great Migration, diverse wildlife",
+			"imgUrl": "/uploads/srivatsan_balaji_dz42hvd61_BE_unsplash_dd7cf8970a.jpg",
+			"tag": "22222"
+		}
     ],
     className = "",
     heading = {
@@ -177,8 +55,8 @@ function Destinations({
                                         type="destinations"
                                         title={destination.title}
                                         description={destination.description}
-                                        displayImgUrl={destination.displayImgUrl}
-                                        tag={`Starting from ${parsePrice(destination.amount)}`}
+                                        imgUrl={destination.imgUrl}
+                                        tag={`Starting from ${parsePrice(destination.tag)}`}
                                         className={styles.destinationItem}
                                     />)
                                 )

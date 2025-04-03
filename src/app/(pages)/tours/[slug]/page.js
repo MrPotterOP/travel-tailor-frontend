@@ -1,5 +1,4 @@
-
-
+import { notFound } from 'next/navigation';
 import ToursHero from "@/app/components/Hero/ToursHero";
 import ToursInfo from "@/app/components/Features/TourInfo";
 import Brief from "@/app/components/UI/Card/Brief";
@@ -10,72 +9,136 @@ import ToursComponet from "@/app/components/Sections/Tours";
 import Blogs from "@/app/components/Featured/Blogs";
 import Banner from "@/app/components/Banner/Banner";
 
-export default function Tours({params}) {
+// Configure the page to be statically generated
+export const dynamic = 'force-static';
+export const revalidate = false;
 
-    const images = [
-            {
-                "id": 1,
-                "src": "/images/moment1.jpg",
-                "alt": "Moment 1",
-                "width": 600,
-                "height": 700
-            },
-            {
-                "id": 2,
-                "src": "/images/moment2.jpg",
-                "alt": "Moment 2",
-                "width": 600,
-                "height": 700
-            },
-            {
-                "id": 3,
-                "src": "/images/moment3.jpg",
-                "alt": "Moment 3",
-                "width": 600,
-                "height": 700
-            },
-            {
-                "id": 4,
-                "src": "/images/moment1.jpg",
-                "alt": "Moment 4",
-                "width": 600,
-                "height": 700
-            },
-            {
-                "id": 5,
-                "src": "/images/moment1.jpg",
-                "alt": "Moment 5",
-                "width": 600,
-                "height": 700
-            },
-            {
-                "id": 6,
-                "src": "/images/moment1.jpg",
-                "alt": "Moment 6",
-                "width": 600,
-                "height": 700
-            },
-            {
-                "id": 7,
-                "src": "/images/moment1.jpg",
-                "alt": "Moment 7",
-                "width": 600,
-                "height": 700
-            }
-        
-    ]
+// Separate function to fetch tour metadata
+async function fetchTourMetadata(slug) {
+  try {
+    const response = await fetch(`${process.env.API_URL}/apihome/tour/${slug}`, {
+      cache: 'force-cache',
+      headers: {
+        'Authorization': `Bearer ${process.env.API_TOKEN}`
+      }
+    });
+    
+    if (!response.ok) {
+      return null;
+    }
+    
+    return response.json();
+  } catch (error) {
+    return null;
+  }
+}
 
-    return (
-        <main>
-            <ToursHero />
-            <ToursInfo />
-            <Brief description="The travel plan offers a unique blend of Thailand&#39;s popular destinations in just a few days. Starting with Phuket, known for its stunning beaches, vibrant nightlife, and luxury resorts, travelers can unwind, explore the local culture, and enjoy iconic spots like Patong Beach and the Big Buddha. The itinerary then shifts to Krabi, a quieter paradise with lush greenery, limestone cliffs, and pristine beaches, providing a more relaxed, nature-focused experience. Moving between these two destinations allows travelers to experience the best of both worlds—Phukets excitement and Krabis tranquility—making it a dynamic, well-rounded getaway for any type of traveler." />
-            <TripDays />
-            <Inclusions />
-            <RollingCarousel  images={images} speed={110} />
-            <ToursComponet />
-            <Blogs />
-            <Banner />
-        </main>
-    )
+// Generate metadata for the tour
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const tour = await fetchTourMetadata(resolvedParams.slug);
+  
+  if (!tour) {
+    return {
+      title: 'Tour Not Found',
+      description: 'The requested tour could not be found.',
+    };
+  }
+  
+  return {
+    title: `${tour.title} | Travel Tailor` || 'Tour Details',
+    description: tour.description || 'Description of the tour',
+    openGraph: {
+      title: tour.title,
+      description: tour.description,
+      images: tour.displayImg ? [{ url: process.env.NEXT_PUBLIC_URL_PREFIX + tour.displayImg }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: tour.title,
+      description: tour.description,
+      images: tour.displayImg ? [process.env.NEXT_PUBLIC_URL_PREFIX + tour.displayImg] : [],
+    },
+  };
+}
+
+// Generate static params for pre-rendering
+export async function generateStaticParams() {
+  try {
+    const response = await fetch(`${process.env.API_URL}/apihome/slugs/tour`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.API_TOKEN}`
+      }
+    });
+    
+    const tours = await response.json();
+    
+    return tours.map((tour) => ({
+      slug: tour.slug,
+    }));
+  } catch (error) {
+    return [];
+  }
+}
+
+// Main Page Component
+export default async function TourPage({ params }) {
+  const resolvedParams = await params;
+  const tourData = await fetchTourMetadata(resolvedParams.slug);
+  
+  if (!tourData) {
+    return notFound();
+  }
+
+  return (
+    <main>
+      {/* Always render Hero and Info sections */}
+      <ToursHero heroData={tourData.hero} />
+      <ToursInfo {...tourData.info} />
+      
+      {/* Conditionally render Brief section */}
+      {tourData.brief && (
+        <Brief 
+          description={tourData.brief} 
+          imgUrl={`${process.env.NEXT_PUBLIC_URL_PREFIX}${tourData.displayImg}`} 
+          url={`/contact?src=${resolvedParams.slug}`}
+        />
+      )}
+
+      {/* Conditionally render Trip Days */}
+      {tourData.days && tourData.days.length > 0 && (
+        <TripDays days={tourData.days} />
+      )}
+
+      {/* Conditionally render Inclusions */}
+      {tourData.inclusions && (
+        <Inclusions {...tourData.inclusions} url={`/contact?src=${resolvedParams.slug}`} />
+      )}
+
+      {/* Conditionally render Image Carousel */}
+      {tourData.images && tourData.images.length > 0 && (
+        <RollingCarousel
+          images={tourData.images}
+          speed={110}
+        />
+      )}
+
+      {/* Conditionally render Tours Component */}
+      {tourData.tours && tourData.tours.length > 0 && (
+        <ToursComponet tours={tourData.tours} />
+      )}
+
+      {/* Conditionally render Blogs */}
+      {tourData.blogs && tourData.blogs.length > 0 && (
+        <Blogs blogs={tourData.blogs} />
+      )}
+
+      {/* Banner with fallback values */}
+      <Banner
+        title={tourData.bannerTitle || "Dreaming of an Adventure?\nLet's Talk!"}
+        cta={tourData.bannerCta || "Enquire now"}
+        url={`/contact?src=${resolvedParams.slug}`}
+      />
+    </main>
+  );
 }

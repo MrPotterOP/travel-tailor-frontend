@@ -4,19 +4,22 @@ import styles from './styles.module.css';
 import Button from '../UI/Button/Button';
 import Tour from '../UI/Card/Tour';
 
+import parsePrice from '@/app/util/parsePrice';
+
 function Destinations ({
     destinations
 }) {
+
     return ( 
         <div className={styles.destinations}>
             <div className={styles.destinationsBox}>
                 {
-                    destinations.map(destination => (
+                    destinations.map((destination) => (
                         <Tour 
-                            key={destination.id}
+                            key={destination.title}
                             {...destination}
                             type='destinations'
-                            tag='Trips starting from ₹10,000'
+                            tag={`Trips starting from ${parsePrice(destination.tag)}`}
                         />)
                     )
                 }

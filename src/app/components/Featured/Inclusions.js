@@ -6,8 +6,9 @@ import SectionTitle from '../UI/SectionTitle/SectionTitle';
 import Button from '../UI/Button/Button';
 
 function Inclusions({
-    inclusions = ["Hotel pick-up and drop", "Santas Village guided tour", "Cold beverages", "Free WiFi", "Free parking", "Transportation", "Childcare", "Health care", "Gym", "Restaurant", "Shopping", "Local guides", ],
-    exclusions = ["Personal expenses", "Waiter tips"],
+    included = ["Hotel pick-up and drop", "Santas Village guided tour", "Cold beverages", "Free WiFi", "Free parking", "Transportation", "Childcare", "Health care", "Gym", "Restaurant", "Shopping", "Local guides", ],
+    excluded = ["Personal expenses", "Waiter tips"],
+    url = "/contact",
     ...props
 }) {
     return ( 
@@ -24,7 +25,7 @@ function Inclusions({
 
                         <p className={styles.inclusionsContentTitle}>What&#39;s included</p>
 
-                        {inclusions.map((item, index) => (
+                        {included.map((item, index) => (
                             <div key={index} className={styles.inclusionsContentItem}>
                                 <Image
                                     src="/images/tick.png"
@@ -43,7 +44,7 @@ function Inclusions({
 
                     <div className={styles.exclusionsContentBox}>
                         <p className={styles.exclusionsContentTitle}>What&#39;s not</p>
-                        {exclusions.map((item, index) => (
+                        {excluded.map((item, index) => (
                             <div key={index} className={styles.exclusionsContentItem}>
                                 <Image 
                                     src="/images/cross.png"
@@ -60,7 +61,7 @@ function Inclusions({
                     <Button
                         className={styles.inclusionsBtn}
                         varient="fill"
-                        href='/contact'
+                        href={url}
                     >Enquire more</Button>
                 </div>
             </div>

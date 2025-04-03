@@ -58,6 +58,10 @@
     transition: all 0.3s ease;
 }
 
+.navItem.active::after {
+    width: 100%;
+}
+
 .navItem:hover::after {
     width: 100%;
 }

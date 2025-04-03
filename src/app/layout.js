@@ -28,7 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${fontPrime.variable} ${fontAlt.variable}`}>
+      <body className={`${fontPrime.variable} ${fontAlt.variable}`} suppressHydrationWarning>
         <Navbar />
         {children}
         <Footer />

@@ -9,42 +9,24 @@ import ScrollNav from '../UI/Button/ScrollNav';
 
 function Spotlights({
     spotlights = [
-            {
-                url: "/spotlights/mountain-trekking-adventure",
-                title: "Mountain Trekking Adventure",
-                description: "Experience the thrill of mountain trekking through some of India's most stunning landscapes.",
-                displayImgUrl: "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
-            },
-            {
-                url: "/spotlights/cultural-immersion-rajasthan",
-                title: "Cultural Immersion in Rajasthan",
-                description: "Dive deep into the vibrant culture and rich heritage of colorful Rajasthan.",
-                displayImgUrl: "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
-            },
-            {
-                url: "/spotlights/kerala-backwaters-exploration",
-                title: "Kerala Backwaters Exploration",
-                description: "Float through the tranquil backwaters of Kerala and discover the beauty of God's own country.",
-                displayImgUrl: "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
-            },
-            {
-                url: "/spotlights/desert-safari-experience",
-                title: "Desert Safari Experience",
-                description: "Embark on an unforgettable journey through the golden sands of the Thar Desert.",
-                displayImgUrl: "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
-            },
-            {
-                url: "/spotlights/himalayan-yoga-retreat",
-                title: "Himalayan Yoga Retreat",
-                description: "Find inner peace and rejuvenation at our exclusive yoga retreats in the Himalayas.",
-                displayImgUrl: "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
-            },
-            {
-                url: "/spotlights/wildlife-safari-adventure",
-                title: "Wildlife Safari Adventure",
-                description: "Encounter exotic wildlife in their natural habitats across India's best national parks.",
-                displayImgUrl: "/uploads/francesco_ungaro_0_F_Bp_Qa47_S0_unsplash_d6416a21ce.jpg",
-            }
+        {
+			"title": "Conquer the Inca Trail, Journey to Machu Picchu",
+			"imgUrl": "/uploads/the_internet_s_own_boy_24fe91dfb2.jpeg",
+			"description": "Challenge yourself to an unforgettable trek! Hike the Inca Trail to Machu Picchu and discover ancient wonders amidst stunning landscapes. Start your adventure",
+			"link": "/tours/inca-trail-to-machu-picchu-trek"
+		},
+		{
+			"title": "Hike the Majestic Swiss Alps This Summer",
+			"imgUrl": "/uploads/onbird_phu_quoc_RR_9_Jfr_D0i_MQ_unsplash_35f347f70b.jpg",
+			"description": "Adventure awaits in the Swiss Alps! Join our hiking tour and witness breathtaking mountain vistas, charming villages, and invigorating trails. Limited spots available!",
+			"link": "/destinations/testing-this-destination-for-second-time"
+		},
+		{
+			"title": "Maldives Overwater Bungalow Escape",
+			"imgUrl": "/uploads/visualsofdana_fg_Gz_B8_B4pp0_unsplash_d4b0a88bae.jpg",
+			"description": "Your dream escape to the Maldives awaits! Stay in luxurious overwater bungalows, dive into turquoise waters, and unwind in ultimate bliss. Treat yourself to paradise",
+			"link": "/tours/maldives-overwater-bliss"
+		}
         ],
     className = "",
     heading = {
@@ -71,10 +53,10 @@ function Spotlights({
                             spotlights.map((spotlight, index) => (
                                 <Preview
                                     key={index}
-                                    url={spotlight.url}
+                                    url={spotlight.link}
                                     title={spotlight.title}
                                     description={spotlight.description}
-                                    displayImgUrl={spotlight.displayImgUrl}
+                                    imgUrl={spotlight.imgUrl}
                                     className={styles.spotlightItem}
                                     btn="Explore more"
                                 />)

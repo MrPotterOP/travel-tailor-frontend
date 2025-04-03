@@ -1,26 +1,32 @@
 /* components/InfiniteShapeCarousel.module.css */
 .carouselContainer {
-  width: 100%;
+  width: 90%;
   max-width: 100%;
   overflow: hidden;
   position: relative;
   padding: 2rem 0;
   display: flex;
-  justify-content: center; /* Center the carousel */
-  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .carouselTrack {
   display: flex;
-  gap: var(--gap);
-  animation: scroll var(--animation-duration) linear infinite;
+  gap: var(--gap, 20px);
+  animation: carouselScroll var(--animation-duration, 300s) linear infinite;
   width: fit-content;
-  align-items: center; /* Vertically center the items */
-  will-change: transform; /* Performance optimization */
+  align-items: center;
+  will-change: transform;
+  /* Prevent any margin collapse */
+  padding: 0.1px; 
 }
 
 .paused {
   animation-play-state: paused;
+}
+
+.noanimate {
+  animation: none;
 }
 
 .imageWrapper {
@@ -31,29 +37,29 @@
   transition: transform 0.3s ease;
 }
 
-/* Different proportions based on the design */
+/* Shape definitions with clear aspect ratios */
 .shape-1 {
   height: 500px;
-  width: 350px;
-  /* Aspect ratio: 1.43:1 */
+  width: 375px;
+  /* Aspect ratio: 4:3 portrait */
 }
 
 .shape-2 {
-  height: 500px;
+  height: 450px;
   width: 400px;
-  /* Aspect ratio: 1.25:1 */
+  /* Aspect ratio: 9:8 (near square) */
 }
 
 .shape-3 {
-  height: 400px;
+  height: 380px;
   width: 500px;
-  /* Aspect ratio: 0.8:1 */
+  /* Aspect ratio: 3:4 landscape */
 }
 
 .shape-4 {
-  height: 450px;
-  width: 300px;
-  /* Aspect ratio: 1.5:1 */
+  height: 520px;
+  width: 360px;
+  /* Aspect ratio: ~1.44:1 tall portrait */
 }
 
 .imageWrapper:hover {
@@ -65,92 +71,87 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
-  display: block; /* Remove any potential inline spacing */
+  display: block;
 }
 
-/* Fixed animation that won't cause overflow */
-@keyframes scroll {
-  0% {
+/* Perfect seamless loop animation */
+@keyframes carouselScroll {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%); /* Still works with more duplicates */
+  to {
+    transform: translateX(calc(-100% / 3));
   }
 }
 
-/* Responsive adjustments that maintain aspect ratios */
+/* Tablet breakpoint */
 @media (max-width: 768px) {
-  /* Medium screens - scale down by ~40% but maintain proportions */
   .shape-1 {
     height: 300px;
-    width: 210px; /* Maintains 1.43:1 ratio */
+    width: 210px;
   }
   
   .shape-2 {
     height: 300px;
-    width: 240px; /* Maintains 1.25:1 ratio */
+    width: 240px;
   }
   
   .shape-3 {
     height: 240px;
-    width: 300px; /* Maintains 0.8:1 ratio */
+    width: 300px;
   }
   
   .shape-4 {
     height: 270px;
-    width: 180px; /* Maintains 1.5:1 ratio */
+    width: 180px;
   }
   
-  /* Reduce gap for smaller screens */
   .carouselTrack {
     gap: 10px;
   }
   
   .carouselContainer {
     padding: 1.5rem 0;
+    width: 95%;
   }
 }
 
+/* Mobile breakpoint */
 @media (max-width: 480px) {
-  /* Small screens - further scale down and adjust for mobile */
   .carouselContainer {
     padding: 1rem 0;
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
     margin: 0 auto;
-    box-sizing: border-box;
   }
   
   .shape-1 {
     height: 160px;
-    width: 112px; /* Maintains 1.43:1 ratio but smaller */
+    width: 112px;
   }
   
   .shape-2 {
     height: 160px;
-    width: 128px; /* Maintains 1.25:1 ratio but smaller */
+    width: 128px;
   }
   
   .shape-3 {
     height: 128px;
-    width: 160px; /* Maintains 0.8:1 ratio but smaller */
+    width: 160px;
   }
   
   .shape-4 {
     height: 144px;
-    width: 96px; /* Maintains 1.5:1 ratio but smaller */
+    width: 96px;
   }
   
-  /* Minimal gap for mobile */
   .carouselTrack {
     gap: 8px;
   }
 }
 
-/* Additional fixes for very small screens */
+/* Extra small screens */
 @media (max-width: 360px) {
   .shape-1, .shape-2, .shape-3, .shape-4 {
-    /* Ensure all images are safely within screen on very small devices */
     transform: scale(0.9);
   }
   

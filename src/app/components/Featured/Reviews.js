@@ -13,43 +13,43 @@ function Reviews({
     reviews
 }) {
 
-    reviews = [
-        {
-            name: 'John Doe',
-            source: 'google',
-            review: 'We recently booked a trip through Travel Tailor and my overall experience was positive. Thanks to Ruchith for the service offered. He was very responsive to all the questions and felt we got a good value for money. Booking process was very easy and straightforward.'
-        },
-        {
-            name: 'Mithun Reddy',
-            source: 'google',
-            review: 'I enjoyed my trip to Maldives. The tour guide was very knowledgeable and the food was delicious. I would recommend this tour to anyone looking for a unique experience.'
-        },
-        {
-            name: 'John Doe',
-            source: 'google',
-            review: 'We recently booked a trip through Travel Tailor and my overall experience was positive. Thanks to Ruchith for the service offered. He was very responsive to all the questions and felt we got a good value for money. Booking process was very easy and straightforward.'
-        },
-        {
-            name: 'Mithun Reddy',
-            source: 'google',
-            review: 'I enjoyed my trip to Maldives. The tour guide was very knowledgeable and the food was delicious. I would recommend this tour to anyone looking for a unique experience.'
-        },
-        {
-            name: 'Mithun Reddy',
-            source: 'google',
-            review: 'I enjoyed my trip to Maldives. The tour guide was very knowledgeable and the food was delicious. I would recommend this tour to anyone looking for a unique experience.'
-        },
-        {
-            name: 'Mithun Reddy',
-            source: 'google',
-            review: 'I enjoyed my trip to Maldives. The tour guide was very knowledgeable and the food was delicious. I would recommend this tour to anyone looking for a unique experience.'
-        },
-        {
-            name: 'Jon Doe',
-            source: 'facebook',
-            review: 'The food was amazing and the service was excellent. The tour guide was very knowledgeable and the experience was unforgettable.'
-        }
-    ]
+    // reviews = [
+    //     {
+    //         name: 'John Doe',
+    //         source: 'google',
+    //         review: 'We recently booked a trip through Travel Tailor and my overall experience was positive. Thanks to Ruchith for the service offered. He was very responsive to all the questions and felt we got a good value for money. Booking process was very easy and straightforward.'
+    //     },
+    //     {
+    //         name: 'Mithun Reddy',
+    //         source: 'google',
+    //         review: 'I enjoyed my trip to Maldives. The tour guide was very knowledgeable and the food was delicious. I would recommend this tour to anyone looking for a unique experience.'
+    //     },
+    //     {
+    //         name: 'John Doe',
+    //         source: 'google',
+    //         review: 'We recently booked a trip through Travel Tailor and my overall experience was positive. Thanks to Ruchith for the service offered. He was very responsive to all the questions and felt we got a good value for money. Booking process was very easy and straightforward.'
+    //     },
+    //     {
+    //         name: 'Mithun Reddy',
+    //         source: 'google',
+    //         review: 'I enjoyed my trip to Maldives. The tour guide was very knowledgeable and the food was delicious. I would recommend this tour to anyone looking for a unique experience.'
+    //     },
+    //     {
+    //         name: 'Mithun Reddy',
+    //         source: 'google',
+    //         review: 'I enjoyed my trip to Maldives. The tour guide was very knowledgeable and the food was delicious. I would recommend this tour to anyone looking for a unique experience.'
+    //     },
+    //     {
+    //         name: 'Mithun Reddy',
+    //         source: 'google',
+    //         review: 'I enjoyed my trip to Maldives. The tour guide was very knowledgeable and the food was delicious. I would recommend this tour to anyone looking for a unique experience.'
+    //     },
+    //     {
+    //         name: 'Jon Doe',
+    //         source: 'facebook',
+    //         review: 'The food was amazing and the service was excellent. The tour guide was very knowledgeable and the experience was unforgettable.'
+    //     }
+    // ]
 
     const scrollRef = useRef(null);
 
