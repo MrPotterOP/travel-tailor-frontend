@@ -1,0 +1,8 @@
+# netlify.toml
+
+[[redirects]]
+  from = "/api/*"
+  # This 'to' path is your actual backend server + the rest of the path
+  to = "http://34.122.149.139:1337/:1337/api/:splat"
+  status = 200 # Proxy status
+  force = true
