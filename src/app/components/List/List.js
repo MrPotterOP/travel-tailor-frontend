@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './styles.module.css';
 
+import parseUrl from '@/app/util/parseUrl';
+
 // --- Helper Function (can be outside or inside, but define before use) ---
 const getCategoryId = (title) => title.toLowerCase().replace(/\s+/g, '-');
 
@@ -206,7 +208,7 @@ const List = ({ data, itemBasePath, itemKeyName }) => {
                     <div className={styles.imageWrapper}>
                       {item.imgUrl ? (
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_URL_PREFIX || ''}${item.imgUrl}`}
+                          src={parseUrl(item.imgUrl)}
                           alt={item.title}
                           fill
                           style={{ objectFit: 'cover' }}

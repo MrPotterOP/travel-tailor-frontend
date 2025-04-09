@@ -81,7 +81,7 @@ function Trips({
 
                 <div className={styles.tripsContent}>
                     {
-                        trips.map((trip, index) => (
+                        trips && trips.map((trip, index) => (
                             <Tour key={index} {...trip} tag={`${trip.nights} Nights`} />
                         ))
                     }

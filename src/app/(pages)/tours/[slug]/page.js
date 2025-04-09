@@ -9,6 +9,8 @@ import ToursComponet from "@/app/components/Sections/Tours";
 import Blogs from "@/app/components/Featured/Blogs";
 import Banner from "@/app/components/Banner/Banner";
 
+import parseUrl from '@/app/util/parseUrl';
+
 // Configure the page to be statically generated
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -51,13 +53,13 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: tour.title,
       description: tour.description,
-      images: tour.displayImg ? [{ url: process.env.NEXT_PUBLIC_URL_PREFIX + tour.displayImg }] : [],
+      images: tour.displayImg ? [{ url: parseUrl(tour.displayImg) }] : [],
     },
     twitter: {
       card: 'summary_large_image',
       title: tour.title,
       description: tour.description,
-      images: tour.displayImg ? [process.env.NEXT_PUBLIC_URL_PREFIX + tour.displayImg] : [],
+      images: tour.displayImg ? [parseUrl(tour.displayImg)] : [],
     },
   };
 }
@@ -100,7 +102,7 @@ export default async function TourPage({ params }) {
       {tourData.brief && (
         <Brief 
           description={tourData.brief} 
-          imgUrl={`${process.env.NEXT_PUBLIC_URL_PREFIX}${tourData.displayImg}`} 
+          imgUrl={parseUrl(tourData.displayImg)} 
           url={`/contact?src=${resolvedParams.slug}`}
         />
       )}

@@ -1,6 +1,8 @@
 import styles from './styles.module.css';
 import Image from 'next/image';
 
+import parseUrl from '@/app/util/parseUrl';
+
 function BlogHero({imgUrl, title, description, auther, date}) {
     return ( 
         <section className={styles.blogHero}>
@@ -14,7 +16,7 @@ function BlogHero({imgUrl, title, description, auther, date}) {
                     {imgUrl && <div className={styles.blogHeroContent}>
                     <div className={styles.blogHeroBg}>
                         <Image
-                            src={`${process.env.NEXT_PUBLIC_URL_PREFIX || ''}${imgUrl}`}
+                            src={parseUrl(imgUrl)}
                             alt="Blog Hero Background"
                             width={1000}
                             height={500}

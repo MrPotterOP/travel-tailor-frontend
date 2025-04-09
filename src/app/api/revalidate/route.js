@@ -32,6 +32,10 @@ export async function POST(request) {
     const body = await request.json();
     const {model, entry} = body;
 
+    if(!model || !entry) {
+        return NextResponse.json({ message: "Model and entry are required" }, { status: 400 });
+    }
+    
 
      //Check model
      const modelName = model.toLowerCase();
@@ -59,7 +63,6 @@ export async function POST(request) {
     }
 
     const path = `${basePath}/${slug}`;
-    console.log(path);
 
 
     // Revalidate

@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import parseUrl from '@/app/util/parseUrl';
 
 
 import Button from '../Button/Button';
@@ -16,14 +17,14 @@ function Preview({
 }) {
 
     if (!imgUrl) {
-        imgUrl = "/uploads/failed_bc13306774.png";
+       return null;
     }
 
     return ( 
         <Link className={`${className} ${styles.preview}`} href={url}>
             <div className={styles.previewImgBox}>
                 <Image 
-                    src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
+                    src={parseUrl(imgUrl)}
                     alt={title}
                     width={500}
                     height={660}

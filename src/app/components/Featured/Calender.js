@@ -2,6 +2,8 @@ import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import parseUrl from '@/app/util/parseUrl';
+
 function Calender({
     months
 }) {
@@ -10,7 +12,7 @@ function Calender({
         return (
             <Link className={styles.monthCard} href={`/calendar/${month}`}>
                 <div className={styles.monthCardBg}>
-                    <Image src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`} alt={month} width={400} height={300}/>
+                    <Image src={parseUrl(imgUrl)} alt={month} width={400} height={300}/>
                 </div>
                 <div className={styles.monthCardContent}>
                     <div className={styles.monthCardTitle}>{month}</div>

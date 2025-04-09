@@ -3,6 +3,8 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 import ArrowBtn from '../UI/Button/ArrowBtn';
 
+import parseUrl from '@/app/util/parseUrl';
+
 function DestinationsHero({
     title = "The Ultimate India",
     description = "Discover the best destinations in India. From the bustling cities to the serene countryside, India has something for everyone.",
@@ -13,7 +15,7 @@ function DestinationsHero({
             <div className={styles.destinationsHeroBox}>
                 <div className={styles.destinationsHeroBg}>
                     <Image
-                        src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
+                        src={parseUrl(imgUrl)}
                         alt={title}
                         width={1400}
                         height={1000}

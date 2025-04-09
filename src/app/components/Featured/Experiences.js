@@ -2,6 +2,8 @@ import styles from './styles.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import parseUrl from '@/app/util/parseUrl';
+
 function Experiences({
     expereinces
 }) {
@@ -12,7 +14,7 @@ function Experiences({
             <Link href={`/experiences/${slug}`} className={styles.expCard}>
                 <div className={styles.experiencesBg}>
                     <Image
-                        src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
+                        src={parseUrl(imgUrl)}
                         alt="Experience"
                         width={500}
                         height={660}

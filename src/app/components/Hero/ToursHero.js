@@ -7,6 +7,8 @@ import styles from './styles.module.css';
 import ArrowBtn from '../UI/Button/ArrowBtn';
 import Varients from '../../lib/varients';
 
+import parseUrl from '@/app/util/parseUrl';
+
 function ToursHero({ heroData }) {
   
 
@@ -43,7 +45,7 @@ function ToursHero({ heroData }) {
         const img = document.createElement('link');
         img.rel = 'preload';
         img.as = 'image';
-        img.href = `${process.env.NEXT_PUBLIC_URL_PREFIX}${item.imgUrl}`;
+        img.href = parseUrl(item.imgUrl);
         document.head.appendChild(img);
       });
       imagesPreloaded.current = true;
@@ -75,7 +77,7 @@ function ToursHero({ heroData }) {
             transition={{ duration: 0.4 }}
           >
             <Image
-              src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${hero.imgUrl}`}
+              src={parseUrl(hero.imgUrl)}
               alt={hero.title}
               width={1400}
               height={1000}

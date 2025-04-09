@@ -51,13 +51,13 @@ export default async function Home() {
 
   return (
     <main>
-      <HomeHero heroData={hero} />
+      {hero && hero.length > 0 && <HomeHero heroData={hero} />}
       <Features />
-      <Trips trips={data.tours} />
+      {data.tours && data.tours.length > 0 && <Trips trips={data.tours} />}
       <MomentsHome />
-      <GroupHome destinations={destinations} months={months} spotlights={spotlights} expereinces={data.experiences} />
-      <Reviews reviews={reviews} />
-      <Blogs blogs={blogs} />
+      {destinations?.length > 0 && months?.length > 0 && spotlights?.length > 0 && <GroupHome destinations={destinations} months={months} spotlights={spotlights} expereinces={data.experiences} />}
+     {reviews && reviews.length > 0 && <Reviews reviews={reviews} />}
+      {blogs && blogs.length > 0 && <Blogs blogs={blogs} />}
       <Banner title={bannerTitle} cta={bannerCta} />
     </main>
   );

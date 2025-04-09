@@ -14,7 +14,7 @@ function Brief({
 }) {
 
     if (!imgUrl) {
-        imgUrl = "/uploads/failed_bc13306774.png";
+        return null;
     }
 
     return ( 

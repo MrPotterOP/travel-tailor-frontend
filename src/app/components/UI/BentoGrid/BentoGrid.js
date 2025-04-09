@@ -3,6 +3,8 @@ import styles from "./styles.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
+import parseUrl from "@/app/util/parseUrl";
+
 // Map grid areas for each count
 const gridAreaMapping = {
   3: ["a", "b", "c"],
@@ -26,7 +28,7 @@ export default function BentoGrid({ experiences = [] }) {
         <Link href={`/experiences/${slug}`} key={slug} className={styles.card} style={{ gridArea: areaMapping[index] }}>
           <div className={styles.imageWrapper}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
+              src={parseUrl(imgUrl)}
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"

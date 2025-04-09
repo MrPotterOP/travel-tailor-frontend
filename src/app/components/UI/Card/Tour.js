@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 
 import Button from '../Button/Button';
+import parseUrl from '@/app/util/parseUrl';
 
 function Tour({
     title,
@@ -18,7 +19,7 @@ function Tour({
 }) {
     
     if (!imgUrl) {
-        imgUrl = "/uploads/failed_bc13306774.png";
+        return null;
     }
 
     return ( 
@@ -26,7 +27,7 @@ function Tour({
             
             <div className={styles.tourBg}>
                 <Image 
-                    src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
+                    src={parseUrl(imgUrl)}
                     alt="Tour"
                     width={600}
                     height={760}

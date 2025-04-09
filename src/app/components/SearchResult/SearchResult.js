@@ -1,23 +1,22 @@
-// components/SearchResultCard/SearchResultCard.js
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './styles.module.css'; // Dedicated CSS module
+import styles from './styles.module.css'; 
+
+import parseUrl from '@/app/util/parseUrl';
 
 const SearchResult = ({ item, href }) => {
   if (!item || !href) {
     return null; // Don't render if item or href is missing
   }
 
-  const imageUrl = item.imgUrl
-    ? `${process.env.NEXT_PUBLIC_URL_PREFIX || ''}${item.imgUrl}`
-    : '/placeholder-image.png'; // Provide a default placeholder
+
 
   return (
     <Link href={href} className={styles.itemCard}>
       <div className={styles.imageWrapper}>
         <Image
-          src={imageUrl}
+          src={parseUrl(item.imgUrl)}
           alt={item.title || 'Search result image'}
           fill
           style={{ objectFit: 'cover' }}

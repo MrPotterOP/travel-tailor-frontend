@@ -4,6 +4,8 @@ import Tours from "@/app/components/Sections/Tours";
 import Blogs from "@/app/components/Featured/Blogs";
 import Banner from "@/app/components/Banner/Banner";
 
+import { notFound } from 'next/navigation';
+
 
 
 // Configure the page to be statically generated

@@ -5,6 +5,7 @@ import Button from '../UI/Button/Button';
 import ParallaxScrollImg from '../UI/Animation/ParallaxScrollImg';
 
 import parseTitle from '@/app/util/parseTitle';
+import parseUrl from '@/app/util/parseUrl';
 
 
 
@@ -37,10 +38,10 @@ function Highlights({
                     <div className={styles.highlightImg}>
                         <ParallaxScrollImg speed={6} direction='up'>
                             <Image
-                                src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
+                                src={parseUrl(imgUrl)}
                                 alt='highlight'
-                                width={660}
-                                height={500}
+                                width={790}
+                                height={740}
                                 objectFit='cover'
                             />
                         </ParallaxScrollImg>

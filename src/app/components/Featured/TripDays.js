@@ -6,6 +6,8 @@ import styles from './styles.module.css';
 import Day from '../UI/Card/Day';
 import Button from '../UI/Button/Button';
 
+import parseUrl from '@/app/util/parseUrl';
+
 function TripDays({
     days = [
         {
@@ -42,7 +44,7 @@ function TripDays({
                     <div key={index} className={styles.dayContainer}>
                         <Day
                             brief={item.brief}
-                            imgUrl={`${process.env.NEXT_PUBLIC_URL_PREFIX}${item.imgUrl}`}
+                            imgUrl={parseUrl(item.imgUrl)}
                             day={index + 1}
                         />
                         {index < visibleDays.length - 1 && (

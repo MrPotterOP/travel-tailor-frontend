@@ -1,6 +1,8 @@
 import styles from './styles.module.css';
 import Image from 'next/image';
 
+import parseUrl from '@/app/util/parseUrl';
+
 function MonthHero({
     month = "January",
     imgUrl = "/uploads/sylwia_bartyzel_e_U4pip_U_8_HA_unsplash_641b698718.jpg",
@@ -11,7 +13,7 @@ function MonthHero({
             <div className={styles.monthHeroBox}>
                 <div className={styles.monthHeroBg}>
                     <Image
-                        src={`${process.env.NEXT_PUBLIC_URL_PREFIX}${imgUrl}`}
+                        src={parseUrl(imgUrl)}
                         alt={month}
                         width={1400}
                         height={1000}

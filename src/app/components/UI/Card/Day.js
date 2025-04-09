@@ -3,6 +3,8 @@ import Image from 'next/image';
 
 import ParallaxScrollImg from '../Animation/ParallaxScrollImg';
 
+import parseUrl from '@/app/util/parseUrl';
+
 
 function Day({
     brief,
@@ -20,7 +22,7 @@ function Day({
             <div className={styles.dayImgBox}>
                 <ParallaxScrollImg speed={6} direction='up'>
                 <Image
-                    src={imgUrl}
+                    src={parseUrl(imgUrl)}
                     alt={brief}
                     width={540}
                     height={430}
