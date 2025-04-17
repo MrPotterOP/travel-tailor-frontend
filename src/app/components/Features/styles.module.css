@@ -10,18 +10,6 @@
 }
 
 
-/* .featuresContent {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    max-width: calc(4 * 160px + 3 * 20px);
-    row-gap: 60px;
-    column-gap: 20px;
-    justify-items: center;
-    align-items: center;
-} */
-
-
 /* ////////////////////////////////// Tour Info */
 #tourInfo {
     padding: 80px var(--pd-page) 60px var(--pd-page);

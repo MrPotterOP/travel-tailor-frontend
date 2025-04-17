@@ -8,6 +8,7 @@ import GroupHome from "./components/Featured/GroupHome";
 import Reviews from "./components/Featured/Reviews";
 import Blogs from "./components/Featured/Blogs";
 import Banner from "./components/Banner/Banner";
+import Steps from './components/Steps/Steps';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -41,7 +42,6 @@ export default async function Home() {
     hero,
     months,
     destinations,
-    spotlights,
     reviews,
     blogs,
   } = data || {};
@@ -53,11 +53,12 @@ export default async function Home() {
     <main>
       {hero && hero.length > 0 && <HomeHero heroData={hero} />}
       <Features />
-      {data.tours && data.tours.length > 0 && <Trips trips={data.tours} />}
+        {destinations?.length > 0 && months?.length > 0 && data.traveller?.length > 0 && <GroupHome destinations={destinations} months={months} traveller={data.traveller} expereinces={data.experiences} />}
       <MomentsHome />
-      {destinations?.length > 0 && months?.length > 0 && spotlights?.length > 0 && <GroupHome destinations={destinations} months={months} spotlights={spotlights} expereinces={data.experiences} />}
-     {reviews && reviews.length > 0 && <Reviews reviews={reviews} />}
-      {blogs && blogs.length > 0 && <Blogs blogs={blogs} />}
+        {data.tours && data.tours.length > 0 && <Trips trips={data.tours} />}
+        {reviews && reviews.length > 0 && <Reviews reviews={reviews} />}
+      <Steps />
+        {blogs && blogs.length > 0 && <Blogs blogs={blogs} />}
       <Banner title={bannerTitle} cta={bannerCta} />
     </main>
   );

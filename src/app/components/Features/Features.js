@@ -10,22 +10,22 @@ function Features() {
         {
             title: "Easy Boking",
             description: "Quick and easy bookings with simple process",
-            icon: "/images/usp.png"
+            icon: "/images/easy.png"
         },
         {
             title: "Customizable",
             description: "Customize your itinerary to suit your needs",
-            icon: "/images/usp.png"
+            icon: "/images/custom.png"
         },
         {
             title: "Flexible",
             description: "Bookings can be made on any day of the week",
-            icon: "/images/usp.png"
+            icon: "/images/flexible.png"
         },
         {
             title: "Humanized Process",
             description: "We've got you covered from booking to beyond",
-            icon: "/images/usp.png"
+            icon: "/images/human.png"
         }
     ]
 
@@ -33,7 +33,7 @@ function Features() {
         <section id={styles.features}>
             <div className={styles.featuresBox}>
                 <SectionTitle
-                    title="Making travel /s simple for you\s"
+                    title="Our /s Travel Tale\s"
                     description="From booking to beyond, we've got you covered"
                     variant="center"
                 ></SectionTitle>

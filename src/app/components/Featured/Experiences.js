@@ -11,7 +11,7 @@ function Experiences({
 
     const ExperienceCard = ({title, slug, imgUrl}) =>{
         return (
-            <Link href={`/experiences/${slug}`} className={styles.expCard}>
+            <Link href={`/experiences/${slug}`} className={`${styles.expCard} ${styles.boxItem}`}>
                 <div className={styles.experiencesBg}>
                     <Image
                         src={parseUrl(imgUrl)}

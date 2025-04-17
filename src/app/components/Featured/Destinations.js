@@ -17,6 +17,7 @@ function Destinations ({
                     destinations.map((destination) => (
                         <Tour 
                             key={destination.title}
+                            className={styles.boxItem}
                             {...destination}
                             type='destinations'
                             tag={`Trips starting from ${parsePrice(destination.tag)}`}
@@ -25,7 +26,7 @@ function Destinations ({
                 }
             </div>
 
-            <Button className="sm" varient="outline" >View all</Button>
+            <Button className="sm" varient="outline" href='/destinations' >View all</Button>
 
         </div>
     );

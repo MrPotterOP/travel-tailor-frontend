@@ -74,7 +74,7 @@ function Trips({
         <section id={styles.featuredTrips}>
             <div className={styles.tripsBox}>
                 <SectionTitle
-                    title="Explore /n /s popular trips \s of 2025"
+                    title="Best on /n /sTravel Tailor\s"
                     description="These are the most enjoyed and loved trips of 2025 by travellers"
                     className={styles.tripsTitle}
                 />

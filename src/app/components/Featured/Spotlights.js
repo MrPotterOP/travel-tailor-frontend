@@ -17,6 +17,7 @@ function Spotlights({
                         imgUrl={spotlight.imgUrl}
                         url={spotlight.link}
                         btn="Explore more"
+                        className={styles.boxItem}
                     />
                 ))
             }

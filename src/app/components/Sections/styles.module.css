@@ -119,6 +119,14 @@
     line-height: 1.1;
 }
 
+.highlightTitle span {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+    font-family: var(--font-alt);
+    font-size: calc(var(--fs-h2) + 8px);
+    line-height: 0;
+}
+
 .highlightBrief {
     font-size: var(--fs-p2);
     font-weight: var(--font-weight-regular);
@@ -288,6 +296,14 @@
         font-weight: var(--font-weight-medium);
         color: var(--color-black);
         line-height: 1.1;
+    }
+
+    .highlightTitle span {
+        font-weight: var(--font-weight-medium);
+        color: var(--color-primary);
+        font-family: var(--font-alt);
+        font-size: calc(var(--fs-h2) + 10px);
+        line-height: 0;
     }
 
     .highlightBrief {

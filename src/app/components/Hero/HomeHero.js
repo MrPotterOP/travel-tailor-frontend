@@ -104,7 +104,7 @@ function HomeHero({ heroData }) {
               </div>
 
               <motion.div variants={Varients.heroHomeContentChildFinal}>
-                <Button href={`${process.env.NEXT_PUBLIC_DOMAIN}${hero.url}`} className='md'>Explore</Button>
+                <Button href={`${process.env.NEXT_PUBLIC_DOMAIN}${hero.url}`} className='md'>{hero.CTA || "Explore"}</Button>
               </motion.div>
             </motion.div>
           </AnimatePresence>

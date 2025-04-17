@@ -1,5 +1,9 @@
 #featuredTrips {
-    padding: 40px var(--pd-page) 60px var(--pd-page);
+    padding: 40px 0 60px 0;
+}
+
+.tripsTitle {
+    padding: 0 var(--pd-page);
 }
 
 .tripsBox, .destinations {
@@ -7,6 +11,10 @@
     flex-direction: column;
     align-items: center;
     gap: 60px;
+}
+
+.tripsBox:first-child, .destinations:first-child {
+    margin-left: var(--pd-page);
 }
 
 .tripsContent, .destinationsBox, .experiencesBox, .spotlights, .reviewCards, .blogs {
@@ -17,6 +25,14 @@
 
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+}
+
+
+.boxItem:first-child {
+    margin-left: var(--pd-page);
+}
+.boxItem:last-child {
+    margin-right: var(--pd-page);
 }
 
 
@@ -43,7 +59,7 @@
 /*                          /////////////////Group Home */
 
 #groupHome {
-    padding: 40px var(--pd-page) 40px var(--pd-page);
+    padding: 40px 0 40px 0;
     background-color: rgba(var(--color-grey-rgb), 0.2);
     position: relative;
     z-index: 1;
@@ -58,8 +74,11 @@
 .groupHomeNav {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 14px;
     align-items: center;
+    justify-content: center;
+    padding: 0 var(--pd-page);
 }
 
 .tabNavigation {
@@ -148,6 +167,8 @@
     gap: 14px;
     align-items: center;
     justify-content: center;
+
+    padding: 0 var(--pd-page);
 }
 
 .monthCard {
@@ -357,6 +378,10 @@
 
     .tripsTitle {
         padding: 0 20px;
+    }
+
+    .tripsBox:first-child, .destinations:first-child {
+        margin-left: 0;
     }
     
     .tripsBox {

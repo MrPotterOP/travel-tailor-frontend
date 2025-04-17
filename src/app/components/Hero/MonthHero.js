@@ -6,6 +6,7 @@ import parseUrl from '@/app/util/parseUrl';
 function MonthHero({
     month = "January",
     imgUrl = "/uploads/sylwia_bartyzel_e_U4pip_U_8_HA_unsplash_641b698718.jpg",
+    description,
     ...props
 }) {
     return ( 
@@ -24,6 +25,9 @@ function MonthHero({
 
                 <div className={styles.monthHeroContent}>
                     <h1 className={styles.monthHeroTitle}>{month}</h1>
+                    {
+                        description && <p className={styles.monthHeroDescription}>{description}</p>
+                    }
                 </div>
             </div>
         </section>

@@ -1,7 +1,7 @@
 import styles from './styles.module.css';
 
 const TabNavigation = ({ activeTab, onTabChange }) => {
-    const tabs = ['popularDestinations', 'byTraveller', 'byMonth', 'spotlights'];
+    const tabs = ['popularDestinations', 'byTraveller', 'byMonth', 'experiences'];
 
 
 
@@ -13,8 +13,8 @@ const TabNavigation = ({ activeTab, onTabChange }) => {
             return 'By Traveller';
           case 'byMonth':
             return 'By Month';
-          case 'spotlights':
-            return 'Spotlights';
+          case 'experiences':
+            return 'Experiences';
           default:
             return 'Popular Destinations';
         } 
