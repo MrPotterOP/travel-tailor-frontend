@@ -45,6 +45,7 @@ function Spotlights({
                     title={heading.title}
                     description={heading.description}
                     className={styles.spotlightsTitle}
+                    variant='center'
                 />
 
                 <div className={styles.spotlightsContent}>

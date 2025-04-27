@@ -1,7 +1,7 @@
 /* styles.module.css for Tours component */
 
 .tours {
-    padding: 40px 0 60px 0;
+    padding: 20px 0 20px 0;
 }
 
 .toursBox {
@@ -47,7 +47,7 @@
 
 /* ////////////////////////////////////////////////////////// Destinations */
 .destinations {
-    padding: 40px 0 60px 0;
+    padding: 20px 0 20px 0;
 }
 
 .destinationsBox {
@@ -89,7 +89,7 @@
 
 /* ////////////////////////////////////////////////////////// Highlights */
 .highlight {
-    padding: 60px var(--pd-page);
+    padding: 40px var(--pd-page);
     display: grid;
     place-content: center;
 }
@@ -153,7 +153,7 @@
 /* ////////////////////////////////////////////////////////// Spotlights */
 
 .featuredSpotlights {
-    padding: 40px 0 60px 0;
+    padding: 20px 0 20px 0;
 }
 
 .spotlightsBox {
@@ -199,7 +199,7 @@
 
 /* ////////////////////////////////////////////////////////// Experiences */
 .experiences {
-    padding: 40px var(--pd-page);
+    padding: 20px var(--pd-page);
 }
 
 .experiencesBox {
@@ -211,7 +211,7 @@
 /* Media Queries for Desktop */
 @media (min-width: 768px) {
     .tours {
-        padding: 60px 0 60px 0;
+        padding: 20px 0 20px 0;
     }
 
     .toursBox {
@@ -240,7 +240,7 @@
 
     /* ////////////////////////////////////////////////////////// Destinations */
     .destinations {
-        padding: 60px 0 60px 0;
+        padding: 20px 0 20px 0;
     }
 
     .destinationsBox {
@@ -265,7 +265,7 @@
 
     /* ////////////////////////////////////////////////////////// Highlights */
     .highlight {
-        padding: 80px calc(var(--pd-page) + 20px);
+        padding: 40px calc(var(--pd-page) + 20px);
         display: grid;
         place-content: center;
     }
@@ -335,7 +335,7 @@
     }
 
     .featuredSpotlights {
-        padding: 60px 0 60px 0;
+        padding: 20px 0 20px 0;
     }
     
     .spotlightsBox {
@@ -357,7 +357,7 @@
 
     /* ////////////////////////////////////////////////////////// Experiences */
     .experiences {
-        padding: 80px calc(var(--pd-page) + 20px);
+        padding: 40px calc(var(--pd-page) + 20px);
     }
     .experiencesBox {
         display: flex;

@@ -9,7 +9,7 @@ const nextConfig = {
             pathname: '/**', // Allows any path from this hostname
           }
         ],
-        domains: ['localhost', '127.0.0.1', 'https://travel-tailer-cms.onrender.com', 'travel-tailer-cms.onrender.com', '34.122.149.139:1337', '34.122.149.139', 'storage.googleapis.com'],
+        domains: ['localhost', '127.0.0.1', 'https://travel-tailer-cms.onrender.com', 'travel-tailer-cms.onrender.com', 'storage.googleapis.com'],
       },
 };
 

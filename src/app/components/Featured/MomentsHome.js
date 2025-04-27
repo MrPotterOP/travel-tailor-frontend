@@ -51,7 +51,7 @@ function MomentsHome({
         <section id={styles.momentsHome}>
             <div className={styles.momentsHomeBox}>
                 <SectionTitle
-                    title="/sTravelle's\s Picks" 
+                    title="/sTraveller's\s Picks" 
                     description="More than just tours, we create memories.  Browse through genuine moments of joy, wonder, and connection shared by our past travelers."
                     variant="center"
                 ></SectionTitle>

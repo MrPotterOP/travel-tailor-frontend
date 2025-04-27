@@ -1,5 +1,5 @@
 .banner {
-    padding: 60px var(--pd-page) 80px var(--pd-page);
+    padding: 0px var(--pd-page) 0px var(--pd-page);
 }
 
 .bannerBox {
@@ -62,7 +62,7 @@
 
 @media (min-width: 768px) {
     .banner {
-        padding: 60px 60px 80px 60px;
+        padding: 0px 60px 0px 60px;
     }
 
     .bannerBox {

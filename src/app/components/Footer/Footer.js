@@ -50,16 +50,16 @@ function Footer() {
 
     const Contact = [
         {
-            name: "+91 1234567890",
-            url: "tel:+91 1234567890"
+            name: "+91 9165070409",
+            url: "tel:+91 9165070409"
         },
         {
-            name: "+91 1234567890",
-            url: "tel:+91 1234567890"
+            name: "+91 9993208865",
+            url: "tel:+91 9993208865"
         },
         {
-            name: "traveltailor@gmail.com",
-            url: "mailto:traveltailor@gmail.com"
+            name: "hi@traveltailor.in",
+            url: "mailto:hi@traveltailor.in"
         }
     ]
 
@@ -78,7 +78,7 @@ function Footer() {
                             <p>Planning a trip?  We&#39;ve got the inside scoop.  Destinations, tips, and all the good stuff to make your travels amazing.</p>
                             <div className={styles.location}>
                                 <Image src="/images/location.png" width={20} height={20} alt='location' />
-                                <p>123 Main Street, Anytown, USA</p>
+                                <p>House no. 77, Jalvihar Colony Rd, Opposite Lions Club, Telibandha, Raipur, Chhattisgarh 492001</p>
                             </div>
                         </div>
                     </div>
@@ -93,16 +93,20 @@ function Footer() {
                     <p>Copyright 2025. All rights reserved.</p>
 
                     <div className={styles.socials}>
-                        <Link href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                        <Link href="https://www.facebook.com/share/1EPxiFRpiR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
                             <Image src="/images/facebook.png" width={20} height={20} alt='facebook' />
                         </Link>
 
-                        <Link href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                        <Link href="https://www.instagram.com/traveltailor_in?igsh=ZGJ5YWRlajF1a2hy" target="_blank" rel="noopener noreferrer">
                             <Image src="/images/instagram.png" width={20} height={20} alt='instagram' />
                         </Link>
 
-                        <Link href="https://www.twitter.com/" target="_blank" rel="noopener noreferrer">
+                        {/* <Link href="https://www.twitter.com/" target="_blank" rel="noopener noreferrer">
                             <Image src="/images/twitter.png" width={20} height={20} alt='twitter' />
+                        </Link> */}
+
+                        <Link href="https://www.linkedin.com/company/travel-tailor-in/" target="_blank" rel="noopener noreferrer">
+                            <Image src="/images/linkedin.png" width={20} height={20} alt='linkedin' />
                         </Link>
                     </div>
                 </div>

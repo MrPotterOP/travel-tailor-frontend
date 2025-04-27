@@ -28,7 +28,7 @@ function Banner({
                 </div>
 
                 <div className={styles.bannerContent}>
-                    <h1 className={styles.bannerTitle}>{parseTitle(title)}</h1>
+                    <h4 className={styles.bannerTitle}>{parseTitle(title)}</h4>
 
                     <Button 
                         varient="fill"

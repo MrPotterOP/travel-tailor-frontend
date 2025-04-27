@@ -42,6 +42,7 @@ function Destinations({
                     title={heading.title}
                     description={heading.description}
                     className={styles.destinationsTitle}
+                    variant='center'
                 />
 
                 <div className={styles.destinationsContent}>

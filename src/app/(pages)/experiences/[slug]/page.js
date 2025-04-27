@@ -139,6 +139,7 @@ export default async function ExperiencePage({ params }) {
           title={experienceData.highlight.title || `Enjoy your \n ${experienceName} with`}
           imgUrl={experienceData.highlight.imgUrl}
           url={`/contact?src=${resolvedParams.slug}`}
+          brief={experienceData.highlight.brief}
         />
       )}
 

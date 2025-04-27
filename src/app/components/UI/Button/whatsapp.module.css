@@ -1,0 +1,38 @@
+/* src/components/WhatsAppButton/WhatsAppButton.module.css */
+
+.whatsAppButton {
+    display: inline-flex; /* Use flex to center icon easily */
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Button size */
+    height: 60px; /* Button size */
+    text-decoration: none; /* Remove underline from link */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transitions */
+    cursor: pointer;
+    overflow: hidden; /* Ensure nothing spills out */
+}
+
+.whatsAppButton:hover {
+    transform: translateY(-2px); /* Slightly enlarge on hover */
+}
+
+.sticky {
+    position: fixed; /* Stick to the viewport */
+    bottom: 20px; /* Distance from bottom */
+    z-index: 1000; /* Ensure it's above most other content */
+}
+
+.left {
+    left: 20px; /* Distance from left */
+}
+
+.right {
+    right: 20px; /* Distance from right */
+}
+
+/* Optional: Style the SVG directly if needed, though fill is set inline */
+.whatsAppButton svg {
+    width: 28px; /* Adjust icon size within the button */
+    height: 28px;
+    fill: #ffffff; /* Ensure icon color */
+}

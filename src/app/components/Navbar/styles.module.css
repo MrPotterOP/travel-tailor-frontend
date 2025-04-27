@@ -1,7 +1,8 @@
+
 .navbar {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: column; 
     padding: 10px var(--pd-page) 6px var(--pd-page);
     align-items: center;
     position: sticky;
@@ -12,17 +13,18 @@
 }
 
 .navBox {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     width: 100%;
-
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .navLogo {
     display: grid;
     place-content: center;
+    flex-shrink: 0; 
 }
 
 .navLogo img {
@@ -31,12 +33,14 @@
     cursor: pointer;
 }
 
+
 .navItemsDesktop {
     display: none;
 }
 
+
 .navCta {
-    display: none;
+    display: block; 
 }
 
 
@@ -76,100 +80,120 @@
     object-fit: contain;
 }
 
+
 .navItemsMobile {
-    display: none;
+    display: none; 
+    width: 100%; 
 }
 
 .navItemsMobile.active {
-
-    
-
-    flex-basis: 100%;
-
+    /* Styles when menu is open */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    padding: 20px;
-    /* position: absolute; */
-    /* top: 90%; */
-    /* left: 40px;
-    right: 40px; */
-    z-index: 99;
+    padding: 20px 0; 
+    margin-top: 10px; 
+    z-index: 98; 
+    background-color: rgba(255, 255, 255, 0.94); 
+    width: 100%; 
+}
+
+.navMenuIcon {
+    display: block; /* Ensure it's visible on mobile */
+    flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
 .navMenuIconBtn {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    padding: 5px; /* Add padding for easier tapping */
+    display: flex; /* Helps align the image inside */
+    align-items: center;
+    justify-content: center;
 }
 
 .navMenuIconBtn img {
-    width: 34px;
+    width: 30px; /* Slightly adjusted size */
+    height: 30px;
     object-fit: contain;
 }
 
+
+/* --- MODIFICATION START: Added Tablet Breakpoint --- */
+/* Tablet Styles (e.g., 768px and up) */
 @media (min-width: 768px) {
 
     .navbar {
-        padding: 10px var(--pd-page) 6px var(--pd-page);
-        align-items: center;
-        position: sticky;
+        
+        flex-direction: row; /* Align items horizontally */
+        justify-content: space-between;
     }
-    
+
+    .navBox {
+        flex-wrap: nowrap;
+    }
+
     .navLogo img {
         width: 80px;
     }
-    
+
     .navItemsDesktop {
         display: flex;
-        gap: 20px;
-    }
-    
-    .navCta {
-        display: block;
-        width: max-content;
-    }
-    
-    
-    .navItem {
-        display: flex;
+        gap: 18px; 
         align-items: center;
-        gap: 6px;
-        position: relative;
+        
     }
-    
+
+    .navCta {
+        display: block; 
+        order: 3; 
+        margin-left: 20px; 
+    }
+
+
+    .navItem {
+        gap: 6px;
+    }
+
     .navItem p {
         font-size: var(--fs-p4);
         font-weight: var(--font-weight-light);
     }
-    
-    
+
+
     .navItem img {
         width: 18px;
-        object-fit: contain;
-    }
-    
-    .navItemsMobile {
-        display: none;
-    }
-    
-    .navMenuIcon {
-        display: none;
     }
 
+    .navItemsMobile {
+        display: none !important; 
+    }
+
+    .navMenuIcon {
+        display: none; 
+    }
+
+
+    .navItemsMobile.active {
+        display: none;
+    }
 }
 
+/* Larger Desktop Styles (e.g., 1024px and up) */
 @media (min-width: 1024px) {
     .navItemsDesktop {
-        margin-left: 100px;
+        gap: 20px; /* Optional: slightly larger gap for bigger screens */
+        margin-left: 50px; /* Add some space between logo/brand and nav items */
+    }
+
+     .navbar {
+        padding: 10px var(--pd-page-lg, var(--pd-page)) 6px var(--pd-page-lg, var(--pd-page)); /* Optional: Larger padding */
+    }
+
+    /* You might want to increase logo size slightly */
+    .navLogo img {
+        width: 90px;
     }
 }
-
-
-
-
-
-
-
-

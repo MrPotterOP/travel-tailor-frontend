@@ -16,8 +16,8 @@ function Experiences({
                     <Image
                         src={parseUrl(imgUrl)}
                         alt="Experience"
-                        width={500}
-                        height={660}
+                        width={400}
+                        height={560}
                     />
                 </div>
                 <div className={styles.experienceContent}>

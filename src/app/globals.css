@@ -85,6 +85,22 @@ p {
   font-size: var(--fs-p3);
 }
 
+.btn.color {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  font-size: var(--fs-p3);
+
+  padding: 8px 38px;
+}
+
+.btn.color:hover {
+  background-color: var(--color-primary);
+  transform: translateY(-2px);
+  color: var(--color-white);
+}
+
+
 
 @media (min-width: 768px) {
   :root {
@@ -147,19 +163,34 @@ p {
 }
 
 /* Color variant - primary color */
-.btn.color {
+/* .btn.color {
   background-color: transparent;
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
   font-size: var(--fs-p3);
 
   padding: 8px 38px;
+} */
+
+.btn.color {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--fs-p3);
+
+  padding: 8px 38px;
 }
 
-.btn.color:hover {
+/* .btn.color:hover {
   background-color: var(--color-primary);
   transform: translateY(-2px);
   color: var(--color-white);
+} */
+
+.btn.color:hover {
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+  transform: translateY(-2px);
+  color: var(--color-primary);
 }
 
 /* Outline variant - bordered */

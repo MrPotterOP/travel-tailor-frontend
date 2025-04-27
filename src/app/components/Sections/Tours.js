@@ -28,6 +28,7 @@ function Tours({
                     title={heading.title}
                     description={heading.description}
                     className={styles.toursTitle}
+                    variant='center'
                 />
 
                 <div className={styles.toursContent}  >

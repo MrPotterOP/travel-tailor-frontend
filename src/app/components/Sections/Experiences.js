@@ -49,6 +49,7 @@ function Experiences({
                     title={heading.title}
                     description={heading.description}
                     className={styles.experiencesTitle}
+                    variant='center'
                 />
                 <div className={styles.experiencesContent}>
                     <BentoGrid experiences={experiences} /> 

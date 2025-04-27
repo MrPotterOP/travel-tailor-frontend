@@ -17,6 +17,7 @@ function Inclusions({
             <SectionTitle
                 title="/sInclusions\s /n at a glance"
                 description="Know whats included in your trip and whats excluded"
+                variant='center'
             ></SectionTitle>
 
             <div className={styles.inclusionsBox}>

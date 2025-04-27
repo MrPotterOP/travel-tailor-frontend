@@ -22,7 +22,7 @@
   
   /* Add spacing between markdown elements */
   .contentColumn > *:not(:last-child) {
-     margin-bottom: 20px; /* Default spacing */
+     margin-bottom: 10px; /* Default spacing */
   }
   
   .contentColumn h2 {
@@ -131,8 +131,8 @@
   .contentColumn h2 {
     font-size: var(--fs-h2);
     font-weight: var(--font-weight-medium);
-    margin-top: 2em; /* More space before H2 */
-    margin-bottom: 1em;
+    margin-top: 40px; /* More space before H2 */
+    margin-bottom: 10px;
     line-height: 1.3;
     scroll-margin-top: calc(var(--header-height, 80px) + 20px); /* Offset for sticky header when scrolling to ID */
   }

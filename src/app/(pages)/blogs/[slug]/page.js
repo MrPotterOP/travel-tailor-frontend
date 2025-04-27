@@ -167,8 +167,8 @@ async function BlogPage({params}) {
             ? `${process.env.NEXT_PUBLIC_URL_PREFIX}${data.displayImg}`
             : undefined, 
         author: {
-            '@type': 'Person', // Assuming author is a person
-            name: data.author || 'Unknown Author',
+            '@type': 'Person', 
+            name: data.author || 'Travel Tailor',
         },
         publisher: { 
             '@type': 'Organization',

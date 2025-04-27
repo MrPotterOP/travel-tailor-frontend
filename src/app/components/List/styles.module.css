@@ -116,7 +116,9 @@
 .itemGrid {
   display: grid;
   grid-template-columns: 1fr; /* Default: 1 column */
-  gap: calc(var(--pd-page) * 0.75); /* Gap between items */
+  /* gap: calc(var(--pd-page) * 0.75); Gap between items */
+
+  gap: 20px;
 }
 
 /* --- Media Queries for Responsive Grid --- */
@@ -175,8 +177,8 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3; /* Maintain aspect ratio */
-  background-color: var(--color-grey-light); /* Show if image is loading */
+  aspect-ratio: 4 / 3; 
+  background-color: var(--color-grey-light); 
 }
 
 /* Next.js Image specific styling (when using fill) */

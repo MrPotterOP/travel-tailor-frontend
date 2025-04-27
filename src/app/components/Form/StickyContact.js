@@ -12,8 +12,8 @@ const StickyContact = () => {
       <div className={styles.contactSection}>
          <span className={styles.iconWrapper}><PhoneIcon /></span>
         <h3 className={styles.title}>CALL US TODAY</h3>
-        <a href="tel:+912074269888" className={styles.phoneNumber}>
-          +91 0000000000
+        <a href="tel:+919165070409" className={styles.phoneNumber}>
+          +91 9165070409
         </a>
         <p className={styles.subText}>Call us today until 10pm</p>
       </div>

@@ -30,6 +30,7 @@ function Blogs({
                     title={heading.title}
                     description={heading.description}
                     className={styles.blogsTitle}
+                    variant='center'
                 />
 
                 <div className={styles.blogsContent}  >
