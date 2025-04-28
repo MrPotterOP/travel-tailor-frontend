@@ -7,6 +7,8 @@ import Blogs from "@/app/components/Featured/Blogs";
 import Banner from "@/app/components/Banner/Banner";
 
 
+import parseUrl from '@/app/util/parseUrl';
+
 // Configure the page to be statically generated
 export const dynamic = 'force-static';
 export const revalidate = false; // Rebuild to update content
@@ -49,7 +51,7 @@ export async function generateMetadata({ params }) {
   const title = experienceData.title || `${resolvedParams.slug.charAt(0).toUpperCase() + resolvedParams.slug.slice(1)} Experiences`;
   const description = experienceData.metaDescription || experienceData.description || `Discover the best ${resolvedParams.slug} experiences and destinations.`;
   // Use hero image or a specific display image for meta
-  const imageUrl = experienceData.hero?.imgUrl ? process.env.NEXT_PUBLIC_URL_PREFIX + experienceData.hero.imgUrl : (experienceData.displayImg ? process.env.NEXT_PUBLIC_URL_PREFIX + experienceData.displayImg : null);
+  const imageUrl = parseUrl(experienceData.heroImg);
 
   return {
     title: `${title} | Travel Tailor`,
@@ -112,15 +114,14 @@ export default async function ExperiencePage({ params }) {
     notFound();
   }
 
-  // Define default headings using the experience type name (slug)
-  const experienceName = experienceData.title || params.slug.charAt(0).toUpperCase() + params.slug.slice(1); 
+  // Define default headings using the experience type name (slug) 
   const defaultSpotlightsHeading = {
-    title: `Experience the best /nof /s${experienceName}s\\s`, // Using 's' might be grammatically tricky, adjust as needed
-    description: `Discover top spotlight locations for ${experienceName} experiences.`
+    title: `Don't miss /nto /s explore \\s`, // Using 's' might be grammatically tricky, adjust as needed
+    description: `Discover top spotlight locations experiences.`
   };
   const defaultDestinationsHeading = {
-    title: `Popular destinations /nfor /s${experienceName}s\\s`,
-    description: `Explore amazing places perfect for ${experienceName} travel.`
+    title: `Popular destinations /nto /s explore\\s`,
+    description: `Explore amazing places.`
   };
 
   return (
@@ -129,14 +130,14 @@ export default async function ExperiencePage({ params }) {
       {experienceData.heroImg && (
         <MonthHero
            imgUrl={experienceData.heroImg}
-           month={experienceData.title || experienceName}
+           month={experienceData.title}
         />
       )}
 
 
       {experienceData.highlight && (
         <Highlights
-          title={experienceData.highlight.title || `Enjoy your \n ${experienceName} with`}
+          title={experienceData.highlight.title || `Enjoy your /n journey with`}
           imgUrl={experienceData.highlight.imgUrl}
           url={`/contact?src=${resolvedParams.slug}`}
           brief={experienceData.highlight.brief}
@@ -164,7 +165,7 @@ export default async function ExperiencePage({ params }) {
       )}
 
       <Banner
-        title={experienceData.banner?.title || `Ready for an /n${experienceName} Adventure?`}
+        title={experienceData.banner?.title || `Ready for an /nAdventure?`}
         cta={experienceData.banner?.cta || "Enquire Now"}
         url={`/contact?src=${resolvedParams.slug}`}
       />

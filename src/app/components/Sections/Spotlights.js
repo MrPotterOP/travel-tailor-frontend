@@ -8,26 +8,7 @@ import Preview from '../UI/Card/Preview';
 import ScrollNav from '../UI/Button/ScrollNav';
 
 function Spotlights({
-    spotlights = [
-        {
-			"title": "Conquer the Inca Trail, Journey to Machu Picchu",
-			"imgUrl": "/uploads/the_internet_s_own_boy_24fe91dfb2.jpeg",
-			"description": "Challenge yourself to an unforgettable trek! Hike the Inca Trail to Machu Picchu and discover ancient wonders amidst stunning landscapes. Start your adventure",
-			"link": "/tours/inca-trail-to-machu-picchu-trek"
-		},
-		{
-			"title": "Hike the Majestic Swiss Alps This Summer",
-			"imgUrl": "/uploads/onbird_phu_quoc_RR_9_Jfr_D0i_MQ_unsplash_35f347f70b.jpg",
-			"description": "Adventure awaits in the Swiss Alps! Join our hiking tour and witness breathtaking mountain vistas, charming villages, and invigorating trails. Limited spots available!",
-			"link": "/destinations/testing-this-destination-for-second-time"
-		},
-		{
-			"title": "Maldives Overwater Bungalow Escape",
-			"imgUrl": "/uploads/visualsofdana_fg_Gz_B8_B4pp0_unsplash_d4b0a88bae.jpg",
-			"description": "Your dream escape to the Maldives awaits! Stay in luxurious overwater bungalows, dive into turquoise waters, and unwind in ultimate bliss. Treat yourself to paradise",
-			"link": "/tours/maldives-overwater-bliss"
-		}
-        ],
+    spotlights,
     className = "",
     heading = {
         title: "/sWhat to see\\s/n and what to do",
@@ -37,6 +18,10 @@ function Spotlights({
 }){
 
     const spotlightsRef = useRef(null);
+
+    if(spotlights?.length == 0) {
+        return null;
+    }
 
     return ( 
         <section className={styles.featuredSpotlights}>
@@ -54,7 +39,7 @@ function Spotlights({
                             spotlights.map((spotlight, index) => (
                                 <Preview
                                     key={index}
-                                    url={spotlight.link}
+                                    url={spotlight.link || "#"}
                                     title={spotlight.title}
                                     description={spotlight.description}
                                     imgUrl={spotlight.imgUrl}
