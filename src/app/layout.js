@@ -1,9 +1,6 @@
 import { Caveat, Lexend } from "next/font/google";
 import "./globals.css";
 
-import Script from "next/script";
-import { Analytics } from "./lib/Analytics";
-
 import WhatsAppButton from "./components/UI/Button/Whatsapp";
 
 const fontAlt = Caveat({
@@ -33,8 +30,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <Script
+      {/* <head> */}
+        {/* <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
             strategy="afterInteractive"
           />
@@ -45,14 +42,15 @@ export default function RootLayout({ children }) {
               gtag('js', new Date());
               gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
             `}
-          </Script>
-      </head>
+          </Script> */}
+      {/* </head> */}
       <body className={`${fontPrime.variable} ${fontAlt.variable}`} suppressHydrationWarning>
+        {/* {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID} />} */}
         <Navbar />
         {children}
         <Footer />
         <WhatsAppButton phoneNumber="+919165070409" position="left" tooltip="Chat on WhatsApp" />
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   );

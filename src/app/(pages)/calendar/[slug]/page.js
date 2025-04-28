@@ -62,11 +62,6 @@ export default function CalendarPage() {
 
   useEffect(() => {
     if (!slug) {
-        // If slug is not available early on, wait for it.
-        // If it remains unavailable, the fetch will likely fail or not run,
-        // potentially leading to notFound() later if calendarData stays null.
-        // Alternatively, call notFound() immediately if slug is definitively invalid.
-        // notFound(); // Uncomment if you want immediate 404 if slug is missing initially
         return;
     }
 
@@ -103,13 +98,7 @@ export default function CalendarPage() {
     );
   }
 
-  // --- Error State (Handled by calling notFound() in useEffect) ---
-  // The component execution will stop if notFound() is called,
-  // so no explicit error rendering block is needed here.
-
-  // --- Not Found State (if fetch returned data, but it was somehow empty/invalid post-loading) ---
-  // This check is a safeguard. If notFound() was called during fetch, this won't be reached.
-  // It handles the unlikely case where loading finishes, but data is still null without an error being thrown.
+  
   if (!calendarData) {
      // If loading is finished but we still have no data, treat as Not Found.
      // This could happen if the initial slug check returns early,
