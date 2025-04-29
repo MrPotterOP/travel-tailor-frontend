@@ -1,7 +1,10 @@
 import { Caveat, Lexend } from "next/font/google";
+import LocalFont from "next/font/local";
 import "./globals.css";
 
 import WhatsAppButton from "./components/UI/Button/Whatsapp";
+
+import AnalyticsLoader from "./lib/AnLoader";
 
 const fontAlt = Caveat({
   variable: "--font-alt",
@@ -16,6 +19,60 @@ const fontPrime = Lexend({
   weight: ["300", "400", "500", "700"],
 })
 
+// const fontPrime = LocalFont({
+//   src: [
+//     {
+//       path: "./fonts/CoFo Sans 1.otf",
+//       weight: "300",
+//       style: "normal",
+//     },
+//     {
+//       path: "./fonts/CoFo Sans 7.otf",
+//       weight: "400",
+//       style: "normal",
+//     },
+//     {
+//       path: "./fonts/CoFo Sans 5.otf",
+//       weight: "500",  
+//       style: "normal",
+//     },
+//     {
+//       path: "./fonts/CoFo Sans 3.otf",
+//       weight: "700",
+//       style: "normal",
+//     }
+//   ],
+//   variable: "--font-prime",
+//   display: "swap",
+// });
+
+// const fontPrime = LocalFont({
+//   src: [
+//     {
+//       path: "./fonts/CoFoSans-Regular.ttf",
+//       weight: "300",
+//       style: "normal",
+//     },
+//     {
+//       path: "./fonts/CoFoSans-Medium.ttf",
+//       weight: "400",
+//       style: "normal",
+//     },
+//     {
+//       path: "./fonts/CoFoSans-Bold.ttf",
+//       weight: "500",  
+//       style: "normal",
+//     },
+//     {
+//       path: "./fonts/CoFoSans-Black.ttf",
+//       weight: "700",
+//       style: "normal",
+//     }
+//   ],
+//   variable: "--font-prime",
+//   display: "swap",
+// });
+
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
@@ -25,7 +82,24 @@ import Footer from "./components/Footer/Footer";
 export const metadata = {
   title: "Home | Travel Tailor",
   description: "Travel Tailor is a travel booking website that helps travelers find the best deals on Tours and help them plan their trips.",
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/images/logoAlt.png",
+    apple: "/images/logoAlt.png"
+  },
+
+  openGraph: {
+    title: "Home | Travel Tailor",
+    description: "Travel Tailor is a travel booking website that helps travelers find the best deals on Tours and help them plan their trips.",
+    url: "https://www.traveltailot.in/",
+    siteName: "Travel Tailor",
+    locale: "en_US",
+    type: "website",
+  }
+
 };
+
 
 export default function RootLayout({ children }) {
   return (
@@ -49,8 +123,8 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
-        <WhatsAppButton phoneNumber="+919165070409" position="left" tooltip="Chat on WhatsApp" />
-        {/* <Analytics /> */}
+        <WhatsAppButton phoneNumber="+919165070409" position="right" tooltip="Chat on WhatsApp" />
+        <AnalyticsLoader />
       </body>
     </html>
   );

@@ -48,6 +48,10 @@ function Navbar() {
         setIsOpen(!isOpen);
     };
 
+    const closeMenu = () => {
+        setIsOpen(false);
+    }
+
 
     return ( 
         <nav className={styles.navbar}>
@@ -93,7 +97,7 @@ function Navbar() {
                     transition={{ duration: 0.3 }}
                 >
                     {navItems.map((item, index) => (
-                        <Link key={index} href={item.href} className={styles.navItem}>
+                        <Link key={index} href={item.href} className={styles.navItem} onClick={closeMenu}>
                                 {item.icon && <Image src={item.icon} alt={item.name} width={24} height={24} />}
                                 <p>{item.name}</p>
                         </Link>

@@ -23,7 +23,7 @@ async function fetchCalendarData(slug) {
         return null;
     }
 
-    const response = await fetch(`${apiUrl}/api/apihome/month/${slug}`, {
+    const response = await fetch(`${apiUrl}/api/apihome/month/${slug.toLowerCase()}`, {
       headers: {
         'Authorization': `Bearer ${apiToken}`
       }

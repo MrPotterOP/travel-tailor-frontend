@@ -114,7 +114,7 @@
     width: 140px;
     height: 220px;
     overflow: hidden;
-    border-radius: var(--rounded);
+    border-radius: calc(var(--rounded) / 2);
     flex-shrink: 0;
     position: relative;
 
@@ -155,7 +155,7 @@
 }
 
 .experienceTitle {
-    font-size: var(--fs-h3);
+    font-size: var(--fs-p2);
     font-weight: var(--font-weight-medium);
 }
 
@@ -180,8 +180,8 @@
     /* width: 180px;
     height: 240px; */
     width: auto;
-    height: 210px;
-    border-radius: var(--rounded);
+    height: 180px;
+    border-radius: calc(var(--rounded) / 2);
     overflow: hidden;
     cursor: pointer;
 
@@ -220,7 +220,7 @@
 }
 
 .monthCardTitle {
-    font-size: var(--fs-h4);
+    font-size: var(--fs-p2);
     font-weight: var(--font-weight-medium);
 }
 
@@ -485,6 +485,7 @@
     .expCard {
         width: 240px;
         height: 350px;
+        border-radius: calc(var(--rounded) - 10px);
     }
 
     .experienceTitle {
@@ -495,6 +496,26 @@
         grid-template-columns: repeat(4, minmax(240px, 1fr));
         padding: 10px;
     }
+
+    .monthCard {
+        position: relative;
+        /* width: 180px;
+        height: 240px; */
+        width: auto;
+        height: 240px;
+        border-radius: calc(var(--rounded) - 10px);
+        overflow: hidden;
+        cursor: pointer;
+    
+        color: var(--color-white);
+    }
+
+    .monthCardTitle {
+        font-size: var(--fs-h4);
+        font-weight: var(--font-weight-medium);
+    }
+
+
 
 
     /* ////////////////////////////////////////////////////////// Trip Days */

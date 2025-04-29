@@ -9,4 +9,4 @@ Disallow: /calendar/
 Disallow: /search
 
 
-Sitemap: ${process.env.DOMAIN}/sitemap.xml
+Sitemap: https://www.traveltailor.in/sitemap.xml
