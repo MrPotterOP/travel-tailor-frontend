@@ -1,4 +1,4 @@
-import { Caveat, Lexend } from "next/font/google";
+import { Caveat, Lexend, Open_Sans } from "next/font/google";
 import LocalFont from "next/font/local";
 import "./globals.css";
 
@@ -13,11 +13,16 @@ const fontAlt = Caveat({
   display: "swap"
 })
 
-const fontPrime = Lexend({
+const fontPrime = Open_Sans({
   variable: "--font-prime",
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
 })
+// const fontPrime = Lexend({
+//   variable: "--font-prime",
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "700"],
+// })
 
 // const fontPrime = LocalFont({
 //   src: [
