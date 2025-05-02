@@ -10,6 +10,7 @@ const nextConfig = {
           }
         ],
         domains: ['localhost', '127.0.0.1', 'https://travel-tailer-cms.onrender.com', 'travel-tailer-cms.onrender.com', 'storage.googleapis.com'],
+        unoptimized: true
       },
 };
 
