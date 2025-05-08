@@ -78,7 +78,7 @@ function Footer() {
                             <p>Planning a trip?  We&#39;ve got the inside scoop.  Destinations, tips, and all the good stuff to make your travels amazing.</p>
                             <div className={styles.location}>
                                 <Image src="/images/location.png" width={20} height={20} alt='location' />
-                                <p>House no. 77, Jalvihar Colony Rd, Opposite Lions Club, Telibandha, Raipur, Chhattisgarh 492001</p>
+                                <p>Building no. 77, Jalvihar Colony Rd, Opposite Lions Club, Telibandha, Raipur, Chhattisgarh 492001</p>
                             </div>
                         </div>
                     </div>
