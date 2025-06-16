@@ -4,6 +4,8 @@ import Tours from "@/app/components/Sections/Tours";
 import Blogs from "@/app/components/Featured/Blogs";
 import Banner from "@/app/components/Banner/Banner";
 
+import PopupForm from '@/app/components/Popup/PopupForm';
+
 import { notFound } from 'next/navigation';
 
 
@@ -207,7 +209,7 @@ async function BlogPage({params}) {
             />
           </aside>
 
-
+          <PopupForm wait={30} />
         </article>
      );
 }
