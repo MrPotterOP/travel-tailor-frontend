@@ -36,9 +36,9 @@ const imageWrapperVariants = {
     },
 };
 
-// Placeholder URLs - **REPLACE THESE**
-const amanPhotoUrl = "/images/about.jpg";
-const armaniPhotoUrl = "/images/about.jpg";
+
+const kanishkaPhotoUrl = "/images/kanishka.jpg";
+const himanshuPhotoUrl = "/images/himanshu.jpeg";
 
 const FoundersSection = () => {
     const sectionRef = useRef(null);
@@ -87,19 +87,19 @@ const FoundersSection = () => {
                 <motion.div className={`${styles.profileItem} ${styles.amanProfile}`} variants={itemVariants}>
                     <motion.div className={styles.imageContainer} variants={imageWrapperVariants} >
                         <Image
-                            src={amanPhotoUrl}
+                            src={himanshuPhotoUrl}
                             alt="Himanshu - Co-founder of Travel Tailor"
-                            layout="fill" // Fill the container
+                            layout="fill" 
                             objectFit="cover"
                             className={styles.profileImage}
-                            priority // Prioritize loading the first image
+                            priority 
                         />
                     </motion.div>
                     <div className={styles.textContainer}>
                         <h3 className={styles.name}>Himanshu</h3>
                         <p className={styles.quote}>I thrive on bringing ideas to life.</p>
                         <p className={styles.bio}>
-                             His path, from the buzz of startups to steering his family&apos;s renowned Sky Automobiles in Raipur, has always been about vision and execution. For Gooo Travel, he&apos;s the strategic heart, meticulously ensuring every aspect of your journey is not just planned, but <em>potentialized</em>. He connects the dots, ensuring the bigger picture of your dream trip unfolds seamlessly.
+                             His path, from the buzz of startups to steering his family&apos;s renowned Sky Automobiles in Raipur, has always been about vision and execution. For Travel Travel, he&apos;s the strategic heart, meticulously ensuring every aspect of your journey is not just planned, but <em>potentialized</em>. He connects the dots, ensuring the bigger picture of your dream trip unfolds seamlessly.
                         </p>
                     </div>
                 </motion.div>
@@ -115,7 +115,7 @@ const FoundersSection = () => {
                     </div>
                      <motion.div className={styles.imageContainer} variants={imageWrapperVariants} >
                         <Image
-                            src={armaniPhotoUrl}
+                            src={kanishkaPhotoUrl}
                             alt="Kanishka - Co-founder of Travel Tailor"
                            layout="fill"
                            objectFit="cover"
