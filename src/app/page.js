@@ -10,7 +10,6 @@ import Blogs from "./components/Featured/Blogs";
 import Banner from "./components/Banner/Banner";
 import Steps from './components/Steps/Steps';
 
-import PopupForm from './components/Popup/PopupForm';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -64,7 +63,6 @@ export default async function Home() {
       {/* <Steps /> */}
         {blogs && blogs.length > 0 && <Blogs blogs={blogs.reverse()} />}
       <Banner title={bannerTitle} cta={bannerCta} />
-      <PopupForm wait={20} />
     </main>
   );
 }

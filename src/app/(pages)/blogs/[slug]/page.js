@@ -209,7 +209,6 @@ async function BlogPage({params}) {
             />
           </aside>
 
-          <PopupForm wait={30} />
         </article>
      );
 }

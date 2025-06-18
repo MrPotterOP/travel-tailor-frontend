@@ -1,10 +1,10 @@
 import { Caveat, Lexend, Open_Sans } from "next/font/google";
-import LocalFont from "next/font/local";
 import "./globals.css";
 
 import WhatsAppButton from "./components/UI/Button/Whatsapp";
 
 import AnalyticsLoader from "./lib/AnLoader";
+import PopupForm from "./components/Popup/PopupForm";
 
 const fontAlt = Caveat({
   variable: "--font-alt",
@@ -18,71 +18,11 @@ const fontPrime = Open_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
 })
-// const fontPrime = Lexend({
-//   variable: "--font-prime",
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "700"],
-// })
 
-// const fontPrime = LocalFont({
-//   src: [
-//     {
-//       path: "./fonts/CoFo Sans 1.otf",
-//       weight: "300",
-//       style: "normal",
-//     },
-//     {
-//       path: "./fonts/CoFo Sans 7.otf",
-//       weight: "400",
-//       style: "normal",
-//     },
-//     {
-//       path: "./fonts/CoFo Sans 5.otf",
-//       weight: "500",  
-//       style: "normal",
-//     },
-//     {
-//       path: "./fonts/CoFo Sans 3.otf",
-//       weight: "700",
-//       style: "normal",
-//     }
-//   ],
-//   variable: "--font-prime",
-//   display: "swap",
-// });
-
-// const fontPrime = LocalFont({
-//   src: [
-//     {
-//       path: "./fonts/CoFoSans-Regular.ttf",
-//       weight: "300",
-//       style: "normal",
-//     },
-//     {
-//       path: "./fonts/CoFoSans-Medium.ttf",
-//       weight: "400",
-//       style: "normal",
-//     },
-//     {
-//       path: "./fonts/CoFoSans-Bold.ttf",
-//       weight: "500",  
-//       style: "normal",
-//     },
-//     {
-//       path: "./fonts/CoFoSans-Black.ttf",
-//       weight: "700",
-//       style: "normal",
-//     }
-//   ],
-//   variable: "--font-prime",
-//   display: "swap",
-// });
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
-
-// TODO - Get detailed description from client
 
 export const metadata = {
   title: "Home | Travel Tailor",
@@ -109,26 +49,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* <head> */}
-        {/* <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-            `}
-          </Script> */}
-      {/* </head> */}
       <body className={`${fontPrime.variable} ${fontAlt.variable}`} suppressHydrationWarning>
-        {/* {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID} />} */}
         <Navbar />
         {children}
         <Footer />
         <WhatsAppButton phoneNumber="+919165070409" position="right" tooltip="Chat on WhatsApp" />
+        <PopupForm />
         <AnalyticsLoader />
       </body>
     </html>

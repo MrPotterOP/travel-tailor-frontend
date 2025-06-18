@@ -3,9 +3,12 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './styles.module.css';
+import { usePopupTrigger } from '@/app/hooks/setPopupTrigger'; 
 
-const PopupForm = ({ wait = 20, onClose }) => {
-  const [isVisible, setIsVisible] = useState(false);
+const PopupForm = () => { 
+
+  const { isVisible, handleClose, handleSuccess } = usePopupTrigger();
+  
   const [isMounted, setIsMounted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -19,95 +22,55 @@ const PopupForm = ({ wait = 20, onClose }) => {
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // Country codes data
+  // Country codes data (remains the same)
   const countryCodes = [
-    { code: '+91', country: 'India' },
-    { code: '+1', country: 'USA' },
-    { code: '+44', country: 'UK' },
-    { code: '+61', country: 'Australia' },
-    { code: '+86', country: 'China' },
-    { code: '+81', country: 'Japan' },
-    { code: '+49', country: 'Germany' },
-    { code: '+33', country: 'France' },
-    { code: '+39', country: 'Italy' },
-    { code: '+34', country: 'Spain' },
-    { code: '+7', country: 'Russia' },
-    { code: '+55', country: 'Brazil' },
-    { code: '+27', country: 'South Africa' },
-    { code: '+971', country: 'UAE' },
-    { code: '+65', country: 'Singapore' }
+    { code: '+91', country: 'India' }, { code: '+1', country: 'USA' }, { code: '+44', country: 'UK' },
+    { code: '+61', country: 'Australia' }, { code: '+86', country: 'China' }, { code: '+81', country: 'Japan' },
+    { code: '+49', country: 'Germany' }, { code: '+33', country: 'France' }, { code: '+39', country: 'Italy' },
+    { code: '+34', country: 'Spain' }, { code: '+7', country: 'Russia' }, { code: '+55', country: 'Brazil' },
+    { code: '+27', country: 'South Africa' }, { code: '+971', country: 'UAE' }, { code: '+65', country: 'Singapore' }
   ];
 
-  // Handle hydration
+  // Handle hydration for createPortal
   useEffect(() => {
     setIsMounted(true);
   }, []);
+  
 
-  // Handle popup timing
-  useEffect(() => {
-    if (!isMounted) return;
-
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, wait * 1000);
-
-    return () => clearTimeout(timer);
-  }, [wait, isMounted]);
-
-  // Auto-close popup after successful submission
   useEffect(() => {
     if (submitStatus === 'success') {
       const timer = setTimeout(() => {
-        handleClose();
-      }, 3000); // Close after 3 seconds
+        handleSuccess(); 
+      }, 3000); 
 
       return () => clearTimeout(timer);
     }
-  }, [submitStatus]);
+  }, [submitStatus, handleSuccess]);
 
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Full name is required';
-    }
-
+    if (!formData.name.trim()) newErrors.name = 'Full name is required';
     if (!formData.email.trim()) {
       newErrors.email = 'Email address is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-
     if (!formData.phoneNumber.trim()) {
       newErrors.phoneNumber = 'Contact number is required';
     } else if (!/^\d{7,15}$/.test(formData.phoneNumber.replace(/\D/g, ''))) {
       newErrors.phoneNumber = 'Please enter a valid phone number';
     }
-
-    if (formData.requirement.length > 900) {
-      newErrors.requirement = 'Requirement cannot exceed 900 characters';
-    }
-
+    if (formData.requirement.length > 900) newErrors.requirement = 'Requirement cannot exceed 900 characters';
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
-
-    // Clear submit status when user starts typing after submission
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
     if (submitStatus) {
       setSubmitStatus(null);
       setSubmitMessage('');
@@ -116,27 +79,20 @@ const PopupForm = ({ wait = 20, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
     setSubmitStatus(null);
     setSubmitMessage('');
 
     try {
-      // Construct full contact number
-      const fullContactNumber = `${formData.countryCode} ${formData.phoneNumber}`;
-      
       const submitData = {
         name: formData.name,
         email: formData.email,
-        contactNumber: fullContactNumber,
+        contactNumber: `${formData.countryCode} ${formData.phoneNumber}`,
         requirement: formData.requirement || ''
       };
 
-      // API call
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_PREFIX}/api/apihome/contact`, {
         method: 'POST',
         headers: {
@@ -147,63 +103,33 @@ const PopupForm = ({ wait = 20, onClose }) => {
       });
 
       if (response.ok) {
-        console.log('Form submitted successfully');
         setSubmitStatus('success');
         setSubmitMessage('Thank you! Your request has been submitted successfully. We\'ll get back to you shortly.');
-        
-        // Reset form data
-        setFormData({
-          name: '',
-          email: '',
-          countryCode: '+91',
-          phoneNumber: '',
-          requirement: ''
-        });
+        setFormData({ name: '', email: '', countryCode: '+91', phoneNumber: '', requirement: '' });
+        // The useEffect for `submitStatus` will call handleSuccess() after 3 seconds.
       } else {
-        // Handle different response statuses
         let errorMessage = 'Something went wrong. Please try again.';
-        
-        if (response.status === 400) {
-          errorMessage = 'Invalid form data. Please check your inputs and try again.';
-        } else if (response.status === 429) {
-          errorMessage = 'Too many requests. Please wait a moment and try again.';
-        } else if (response.status >= 500) {
-          errorMessage = 'Server error. Please try again later.';
-        }
-
-        console.error('Form submission failed:', response.status);
+        if (response.status === 400) errorMessage = 'Invalid form data. Please check your inputs.';
+        else if (response.status === 429) errorMessage = 'Too many requests. Please wait and try again.';
+        else if (response.status >= 500) errorMessage = 'Server error. Please try again later.';
         setSubmitStatus('error');
         setSubmitMessage(errorMessage);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
       setSubmitStatus('error');
-      
-      // Handle network errors
-      if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        setSubmitMessage('Network error. Please check your connection and try again.');
-      } else {
-        setSubmitMessage('An unexpected error occurred. Please try again.');
-      }
+      setSubmitMessage('An unexpected error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      if (onClose) onClose();
-    }, 300);
-  };
-
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
-      handleClose();
+      handleClose(); 
     }
   };
 
-  // Don't render anything on server or before hydration
+
   if (!isMounted || !isVisible) return null;
 
   const popupContent = (
@@ -214,7 +140,7 @@ const PopupForm = ({ wait = 20, onClose }) => {
       <div className={`${styles.popup} ${isVisible ? styles.popupVisible : ''}`}>
         <button 
           className={styles.closeButton}
-          onClick={handleClose}
+          onClick={handleClose} 
           aria-label="Close popup"
         >
           &times;
@@ -226,7 +152,6 @@ const PopupForm = ({ wait = 20, onClose }) => {
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
-          {/* Success/Error Message */}
           {submitStatus && (
             <div className={`${styles.formMessage} ${styles[submitStatus]}`}>
               {submitMessage}
@@ -234,108 +159,42 @@ const PopupForm = ({ wait = 20, onClose }) => {
           )}
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>
-              Full Name <span className={styles.required}>*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className={`${styles.input} ${errors.name ? styles.inputError : ''}`}
-              placeholder="Enter your full name"
-              disabled={isSubmitting}
-            />
+            <label className={styles.label}>Full Name <span className={styles.required}>*</span></label>
+            <input type="text" name="name" value={formData.name} onChange={handleInputChange} className={`${styles.input} ${errors.name ? styles.inputError : ''}`} placeholder="Enter your full name" disabled={isSubmitting} />
             {errors.name && <span className={styles.error}>{errors.name}</span>}
           </div>
 
           <div className={styles.formGroup}>
             <label className={styles.label}>Email Address <span className={styles.required}>*</span></label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
-              placeholder="Enter your email address"
-              disabled={isSubmitting}
-            />
+            <input type="email" name="email" value={formData.email} onChange={handleInputChange} className={`${styles.input} ${errors.email ? styles.inputError : ''}`} placeholder="Enter your email address" disabled={isSubmitting} />
             {errors.email && <span className={styles.error}>{errors.email}</span>}
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>
-              Contact Number <span className={styles.required}>*</span>
-            </label>
+            <label className={styles.label}>Contact Number <span className={styles.required}>*</span></label>
             <div className={styles.phoneContainer}>
-              <select
-                name="countryCode"
-                value={formData.countryCode}
-                onChange={handleInputChange}
-                className={styles.countrySelect}
-                disabled={isSubmitting}
-              >
-                {countryCodes.map(({ code, country }) => (
-                  <option key={code} value={code}>
-                    {country} ({code})
-                  </option>
-                ))}
+              <select name="countryCode" value={formData.countryCode} onChange={handleInputChange} className={styles.countrySelect} disabled={isSubmitting}>
+                {countryCodes.map(({ code, country }) => ( <option key={code} value={code}>{country} ({code})</option>))}
               </select>
-              <input
-                type="tel"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleInputChange}
-                className={`${styles.phoneInput} ${errors.phoneNumber ? styles.inputError : ''}`}
-                placeholder="Your phone number"
-                disabled={isSubmitting}
-              />
+              <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} className={`${styles.phoneInput} ${errors.phoneNumber ? styles.inputError : ''}`} placeholder="Your phone number" disabled={isSubmitting} />
             </div>
             {errors.phoneNumber && <span className={styles.error}>{errors.phoneNumber}</span>}
           </div>
 
           <div className={styles.formGroup}>
             <label className={styles.label}>Requirement</label>
-            <textarea
-              name="requirement"
-              value={formData.requirement}
-              onChange={handleInputChange}
-              className={`${styles.textarea} ${errors.requirement ? styles.inputError : ''}`}
-              placeholder="Tell us about your travel requirements..."
-              rows={4}
-              maxLength={900}
-              disabled={isSubmitting}
-            />
-            <div className={styles.characterCount}>
-              {formData.requirement.length}/900 characters
-            </div>
+            <textarea name="requirement" value={formData.requirement} onChange={handleInputChange} className={`${styles.textarea} ${errors.requirement ? styles.inputError : ''}`} placeholder="Tell us about your travel requirements..." rows={4} maxLength={900} disabled={isSubmitting} />
+            <div className={styles.characterCount}>{formData.requirement.length}/900 characters</div>
             {errors.requirement && <span className={styles.error}>{errors.requirement}</span>}
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting || submitStatus === 'success'}
-            className={`${styles.submitButton} ${isSubmitting ? styles.submitting : ''} ${submitStatus === 'success' ? styles.success : ''}`}
-          >
-            {isSubmitting ? (
-              <>
-                <span className={styles.spinner}></span>
-                Submitting...
-              </>
-            ) : submitStatus === 'success' ? (
-              <>
-                <span className={styles.checkmark}>✓</span>
-                Submitted Successfully
-              </>
-            ) : (
-              'Submit Request'
-            )}
+          <button type="submit" disabled={isSubmitting || submitStatus === 'success'} className={`${styles.submitButton} ${isSubmitting ? styles.submitting : ''} ${submitStatus === 'success' ? styles.success : ''}`}>
+            {isSubmitting ? (<> <span className={styles.spinner}></span> Submitting... </>) : submitStatus === 'success' ? (<> <span className={styles.checkmark}>✓</span> Submitted </> ) : ('Submit Request')}
           </button>
         </form>
       </div>
     </div>
   );
-
 
   return createPortal(popupContent, document.body);
 };
