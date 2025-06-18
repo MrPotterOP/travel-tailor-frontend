@@ -1,41 +1,38 @@
-/* src/components/Blog/BlogBody.module.css */
 .blogLayoutContainer {
     display: grid;
-    grid-template-columns: 240px 1fr; /* Fixed width TOC, flexible content */
-    gap: 60px; /* Space between TOC and content */
-    max-width: 1200px; /* Adjust max width as needed */
-    margin: 0 auto; /* Center the layout */
-    padding: var(--pd-page) 0; /* Use page padding vertically */
+    grid-template-columns: 240px 1fr; 
+    gap: 60px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: var(--pd-page) 0; 
   }
   
   .tocColumn {
-    /* Styles for the TOC column itself, if needed */
-    /* The TOC component inside handles sticky positioning */
-    width: 240px; /* Ensure width matches grid template */
+    width: 240px; 
   }
   
   .contentColumn {
-    /* Styles for the main content area */
-    min-width: 0; /* Prevents content overflow issues in grid */
-    line-height: 1.7; /* Improve readability */
+
+    min-width: 0; 
+    line-height: 1.7; 
   }
   
-  /* Add spacing between markdown elements */
+
   .contentColumn > *:not(:last-child) {
-     margin-bottom: 10px; /* Default spacing */
+     margin-bottom: 10px; 
   }
   
   .contentColumn h2 {
     font-size: var(--fs-h2);
     font-weight: var(--font-weight-medium);
-    margin-top: 2em; /* More space before H2 */
+    margin-top: 2em; 
     line-height: 1.3;
-    scroll-margin-top: calc(var(--header-height, 80px) + 20px); /* Offset for sticky header when scrolling to ID */
+    scroll-margin-top: calc(var(--header-height, 80px) + 20px); 
   }
   
   .paragraph {
-    font-size: var(--fs-p2); /* Use p2 for body text */
-    color: var(--color-black); /* Ensure readability */
+    font-size: var(--fs-p2); 
+    color: var(--color-black); 
   }
   
   .strong {
@@ -73,12 +70,25 @@
   .contentColumn a:hover {
      color: var(--color-black);
   }
+
+  .blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    color: var(--color-grey);
+  }
+
+  .blockquote p {
+    font-size: var(--fs-p1);
+  }
   
   
-  /* Responsive Adjustments */
+
   @media (max-width: 1024px) {
     .blogLayoutContainer {
-      grid-template-columns: 1fr; /* Stack columns */
+      grid-template-columns: 1fr; 
       gap: 0; /* Remove gap */
     }
   
@@ -203,10 +213,14 @@
     }
     .paragraph,
     .list {
-        font-size: var(--fs-p2); /* Ensure readable font size */
+        font-size: var(--fs-p2); 
     }
      .blogLayoutContainer {
        padding: var(--pd-thin) 0;
+     }
+
+     .blockquote p {
+       font-size: var(--fs-p2);
      }
   
   }
