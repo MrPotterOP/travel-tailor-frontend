@@ -1,7 +1,6 @@
-// app/search/page.js
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchResult from '../../components/SearchResult/SearchResult';
 import styles from './styles.module.css';
@@ -24,11 +23,29 @@ const CATEGORY_TITLES = {
   tours: 'Tours',
 };
 
+// Custom hook for debouncing
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+
 // Separate the inner component that uses useSearchParams
 function SearchPageContent() {
   const router = useRouter();
-  
-  // Import useSearchParams inside the component that's wrapped with Suspense
+
+
   const { useSearchParams } = require('next/navigation');
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
@@ -39,17 +56,31 @@ function SearchPageContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Effect to perform search if initialQuery exists on load
-  React.useEffect(() => {
-    if (initialQuery) {
-      performSearch(initialQuery);
+  // Debounce the search query
+  const debouncedSearchQuery = useDebounce(searchQuery, 500); // 500ms delay
+
+
+  useEffect(() => {
+    if (initialQuery && !searchResults) {
+        performSearch(initialQuery);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Run only once on mount
+  }, [initialQuery]);
+
+
+  useEffect(() => {
+    if (debouncedSearchQuery && debouncedSearchQuery !== submittedQuery && debouncedSearchQuery.length >= 3) {
+      performSearch(debouncedSearchQuery);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearchQuery, submittedQuery]);
+
 
   // Function to fetch search results
   const performSearch = async (query) => {
-    if (!query) {
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery) {
       setSearchResults(null);
       setError(null);
       setIsLoading(false);
@@ -61,22 +92,22 @@ function SearchPageContent() {
 
     setIsLoading(true);
     setError(null);
-    setSubmittedQuery(query);
+    setSubmittedQuery(trimmedQuery);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_PREFIX}/api/apihome/search/${encodeURIComponent(query)}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_PREFIX}/api/apihome/search/${encodeURIComponent(trimmedQuery)}`, {
         headers: {
           'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`
         }
       });
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       setSearchResults(data);
 
-      router.push(`/search?q=${encodeURIComponent(query)}`);
+      router.push(`/search?q=${encodeURIComponent(trimmedQuery)}`);
     } catch (err) {
       console.error("Failed to fetch search results:", err);
       setError("Sorry, we couldn't perform the search. Please try again later.");
@@ -89,7 +120,11 @@ function SearchPageContent() {
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    performSearch(searchQuery.trim());
+    // No need to call performSearch here as the debouncer will handle it.
+    // If you want instant search on button click, you can keep it.
+    if (searchQuery.trim() !== submittedQuery) {
+        performSearch(searchQuery.trim());
+    }
   };
 
   // Handle input change
@@ -164,7 +199,7 @@ function SearchPageContent() {
 
         {/* Initial state message (only show if no query submitted and not loading) */}
         {!submittedQuery && !isLoading && !error && (
-          <p className={styles.promptMessage}>Enter a term and click Search.</p>
+          <p className={styles.promptMessage}>Type 3 or more characters to begin search.</p>
         )}
       </div>
     </div>
