@@ -22,7 +22,7 @@
 }
 
 .footerLogo {
-    width: 80px;
+    width: 98px;
 }
 
 .footerLogo img {
@@ -175,6 +175,9 @@
         flex-direction: row;
         justify-content: space-between;
         padding-top: 30px;
+    }
+    .footerLogo {
+        width: 120px;
     }
 }
 
