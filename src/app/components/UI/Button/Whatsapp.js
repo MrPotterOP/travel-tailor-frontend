@@ -68,7 +68,7 @@ const WhatsAppButton = ({
             title={tooltip} 
         >
             <div className={styles.chatButton}>
-                <span>How we can help you?</span>
+                <span>How can we help you?</span>
             </div>
             {/* <audio id="pop" src="/audio/chat.mp3" preload="auto"></audio> */}
             <WhatsAppIcon />

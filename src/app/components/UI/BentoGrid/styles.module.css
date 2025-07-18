@@ -45,6 +45,8 @@
     font-weight: var(--font-weight-medium);
     color: var(--color-white);
   }
+
+  
   
   /* Mobile layouts: Dynamic heights for visual interest */
   .grid3 {
@@ -83,6 +85,33 @@
       "d"
       "e"
       "f";
+  }
+
+  .overlayMoment {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-white);
+    gap: 8px;
+
+    background: linear-gradient(0deg, rgba(0,0,0,0.8898153011204482) 0%, rgba(255,255,255,0) 100%);
+    backdrop-filter: 18px;
+    -webkit-backdrop-filter: 18px;
+
+    cursor: default;
+  }
+
+  .overlayMoment .description {
+    font-size: var(--fs-p3);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .overlayMoment .title {
+    font-size: var(--fs-h4);
+    font-weight: var(--font-weight-medium);
   }
   
   /* Desktop layouts for screens ≥ 768px */

@@ -1,11 +1,11 @@
 // app/page.js
 import { notFound } from 'next/navigation'; 
 import HomeHero from "./components/Hero/HomeHero";
-import Features from "./components/Features/Features";
+
 import Trips from "./components/Featured/Trips";
-import MomentsHome from "./components/Featured/MomentsHome";
+
 import GroupHome from "./components/Featured/GroupHome";
-import Reviews from "./components/Featured/Reviews";
+import Testimonials from "./components/Testimonials/Testimonials";
 import Blogs from "./components/Featured/Blogs";
 import Banner from "./components/Banner/Banner";
 import Steps from './components/Steps/Steps';
@@ -57,10 +57,13 @@ export default async function Home() {
       {/* <Features /> */}
       <Steps />
         {destinations?.length > 0 && months?.length > 0 && data.traveller?.length > 0 && <GroupHome destinations={destinations} months={months} traveller={data.traveller} expereinces={data.experiences} />}
-      { data.moments && data.moments.length > 0 && <MomentsHome monents={data.moments} />}
-        {reviews && reviews.length > 0 && <Reviews reviews={reviews} />}
+
+        {reviews && reviews.length > 0 && <Testimonials reviews={reviews} />}
+
+        {/* {data.moments && data.moments.length > 0 && <MomentsHome monents={data.moments} />} */}
+        {/* {reviews && reviews.length > 0 && <Reviews reviews={reviews} />} */}
         {data.tours && data.tours.length > 0 && <Trips trips={data.tours} />}
-      {/* <Steps /> */}
+
         {blogs && blogs.length > 0 && <Blogs blogs={blogs.reverse()} />}
       <Banner title={bannerTitle} cta={bannerCta} />
     </main>

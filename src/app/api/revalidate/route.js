@@ -10,7 +10,7 @@ const pathMaps = {
     tour: '/tours'
 }
 
-const homepageModels = ['moment', 'featured', 'review', 'hero'];
+const homepageModels = ['moment', 'featured', 'review', 'hero', 'testimonial'];
 
 
 

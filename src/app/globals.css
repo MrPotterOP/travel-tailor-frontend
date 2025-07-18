@@ -43,6 +43,11 @@ body {
   --pd-page: 20px;
   --pd-thin: 10px;
   --header-height: 140px;
+
+
+  --nav-column-width: 260px; 
+  --column-gap: 40px;      
+  --rounded-sm: 6px;  
   
 }
   
@@ -232,6 +237,8 @@ p {
   padding: 12px;
   width: 68px;
   height: 49px;
+
+  flex-shrink: 0;
 }
 
 /* Text variant with down arrow and blurred effect */

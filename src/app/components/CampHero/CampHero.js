@@ -3,19 +3,49 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import styles from './styles.module.css';
+import styles from './styles.module.css'; // We will create this file next
 import ArrowBtn from '../UI/Button/ArrowBtn';
 import Varients from '../../lib/varients';
-
 import parseUrl from '@/app/util/parseUrl';
 
-function ToursHero({ heroData, varient }) {
-  
-
+// The new CampHero component accepts `heroData` for the slider and `children` for the form
+function CampHero({ heroData, children }) {
   const [current, setCurrent] = useState(0);
   const [hero, setHero] = useState(heroData[0]);
   const imagesPreloaded = useRef(false);
 
+
+  // Autoplay timer effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const nextIndex = (current + 1) % heroData.length;
+      handleClick(nextIndex);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [current, heroData.length]);
+
+  // Image preloading effect
+  useEffect(() => {
+    if (!imagesPreloaded.current) {
+      heroData.forEach((item) => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = parseUrl(item.imgUrl);
+        document.head.appendChild(link);
+      });
+      imagesPreloaded.current = true;
+    }
+  }, [heroData]);
+
+  // Guard clause for missing data
+  if (!heroData || heroData.length === 0) {
+    return null;
+  }
+
+  
+
+  // --- Slider Logic (reused from ToursHero) ---
   const handleClick = (index) => {
     setCurrent(index);
     setHero(heroData[index]);
@@ -31,45 +61,18 @@ function ToursHero({ heroData, varient }) {
     handleClick(nextIndex);
   };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const nextIndex = (current + 1) % heroData.length;
-      handleClick(nextIndex);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [current, heroData]);
+  
+  // --- End Slider Logic ---
 
-  useEffect(() => {
-    if (!imagesPreloaded.current) {
-      heroData.forEach((item) => {
-        const img = document.createElement('link');
-        img.rel = 'preload';
-        img.as = 'image';
-        img.href = parseUrl(item.imgUrl);
-        document.head.appendChild(img);
-      });
-      imagesPreloaded.current = true;
-    }
-  }, [heroData]);
-
-  const backgroundStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'black',
-    zIndex: -3,
-  };
-
-  const Hero = () => {
-    return (
-      <section className={`${styles.toursHero} ${(varient === 'small') ? styles.vSmall : ''}`}>
-        <div style={backgroundStyle}></div>
+  return (
+    <section className={styles.campHero}>
+      {/* Left Column: Image Slider */}
+      <div className={styles.campHeroSlider}>
+        <div className={styles.backgroundStyle}></div>
 
         <AnimatePresence mode="wait">
           <motion.div
-            className={styles.toursHeroImgContainer}
+            className={styles.campHeroImgContainer}
             key={hero.imgUrl}
             initial={{ opacity: 0, filter: 'brightness(0.4)' }}
             animate={{ opacity: 1, filter: 'brightness(0.8)' }}
@@ -81,23 +84,23 @@ function ToursHero({ heroData, varient }) {
               alt={hero.title}
               width={1400}
               height={1000}
-              className={styles.toursHeroImg}
+              className={styles.campHeroImg}
               priority={true}
             />
           </motion.div>
         </AnimatePresence>
 
-        <div className={styles.toursHeroContent}>
+        <div className={styles.campHeroContent}>
           <AnimatePresence mode="wait">
             <motion.div
-              className={styles.toursHeroContentMain}
+              className={styles.campHeroContentMain}
               key={hero.title}
               variants={Varients.heroHomeContentMain}
               initial="initial"
               animate="animate"
               exit="exit"
             >
-              <div className={styles.toursHeroContentMainTitle}>
+              <div className={styles.campHeroContentMainTitle}>
                 <motion.h1 variants={Varients.heroHomeContentChild}>
                   {hero.title}
                 </motion.h1>
@@ -105,7 +108,7 @@ function ToursHero({ heroData, varient }) {
             </motion.div>
           </AnimatePresence>
 
-          <div className={styles.toursHeroNav}>
+          <div className={styles.campHeroNav}>
             <div className={styles.navArrows}>
               <ArrowBtn
                 direction="left"
@@ -114,7 +117,7 @@ function ToursHero({ heroData, varient }) {
               />
               <div className={styles.navSlideProgress}>
                 <div className={styles.navProgressBar}>
-                  <motion.div 
+                  <motion.div
                     className={styles.navProgress}
                     initial={{ width: 0 }}
                     animate={{ width: '100%' }}
@@ -129,17 +132,16 @@ function ToursHero({ heroData, varient }) {
                 onClick={handleNext}
               />
             </div>
-
-            <div className={styles.scrollIndicator}>
-              <ArrowBtn className={styles.scrollIndicatorBtn} label="Scroll" direction="down" variant="blurred" />
-            </div>
           </div>
         </div>
-      </section>
-    );
-  };
+      </div>
 
-  return <>{heroData ? <Hero /> : <></>}</>;
+      {/* Right Column: Form Container */}
+      <div className={styles.campHeroForm}>
+        {children} 
+      </div>
+    </section>
+  );
 }
 
-export default ToursHero;
+export default CampHero;

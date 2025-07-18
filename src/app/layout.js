@@ -27,6 +27,7 @@ import Footer from "./components/Footer/Footer";
 export const metadata = {
   title: "Home | Travel Tailor",
   description: "Travel Tailor is a travel booking website that helps travelers find the best deals on Tours and help them plan their trips.",
+  keywords: "travel consultant, custom trip planner, customised itinerary, travel advisor, travel agent and travel consultant",
 
   icons: {
     icon: "/favicon.ico",
@@ -37,7 +38,7 @@ export const metadata = {
   openGraph: {
     title: "Home | Travel Tailor",
     description: "Travel Tailor is a travel booking website that helps travelers find the best deals on Tours and help them plan their trips.",
-    url: "https://www.traveltailot.in/",
+    url: "https://traveltailor.in/",
     siteName: "Travel Tailor",
     locale: "en_US",
     type: "website",

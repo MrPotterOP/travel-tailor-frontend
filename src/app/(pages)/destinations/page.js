@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import List from "@/app/components/List/List";
+import TextList from "@/app/components/TextList/TextList";
 import Spinner from '@/app/components/UI/Spinner/Spinner'; 
 
 import styles from './styles.module.css';
@@ -15,8 +16,8 @@ export default function DestinationsPage() {
   // --- Data Fetching ---
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true); // Set loading true when fetch starts
-      setError(null); // Reset error state
+      setIsLoading(true); 
+      setError(null); 
 
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL_PREFIX}/api/apihome/destinations/`, {
@@ -26,7 +27,7 @@ export default function DestinationsPage() {
         });
 
         if (!response.ok) {
-          // Throw an error if response status is not OK
+          
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
@@ -42,7 +43,7 @@ export default function DestinationsPage() {
       }
     };
 
-    // Call the fetch function when the component mounts
+
     fetchData();
 
   }, []); 
@@ -63,11 +64,19 @@ export default function DestinationsPage() {
            No destinations found.
          </div>
       ) : (
-        <List
+        // <List
+        //   data={destinationData}
+        //   itemBasePath="/destinations"
+        //   itemKeyName="destinations" 
+        // />
+        <TextList
+
           data={destinationData}
           itemBasePath="/destinations"
-          itemKeyName="destinations" 
+          itemKeyName="destinations"
+
         />
+
       )}
     </section>
   );

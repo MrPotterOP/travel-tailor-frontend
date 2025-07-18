@@ -280,6 +280,13 @@
 
 
 
+.vSmall {
+    min-height: 62vh !important;
+}
+
+.vSmall .toursHeroContent {
+    min-height: 62vh !important;
+}
 
 
 @keyframes fillProgress {

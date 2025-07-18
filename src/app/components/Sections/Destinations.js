@@ -35,6 +35,9 @@ function Destinations({
 
     const destinationsRef = useRef(null);
 
+    console.log(destinations, "destinations");
+    
+
     return ( 
         <section className={styles.destinations}>
             <div className={styles.destinationsBox}>

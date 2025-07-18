@@ -129,7 +129,7 @@ const FoundersSection = () => {
             <motion.div className={styles.conclusion} variants={itemVariants}>
                  <h4 className={styles.conclusionTitle}>The Difference</h4>
                  <p className={styles.conclusionText}>
-                    We&apos;re adventurers, yes - the kind who&apos;ve felt the rush of paragliding and the awe of skydiving. But more than that, we&apos;re travellers just like you. We combine Aman&apos;s knack for strategy with Armani&apos;s passion for flawless execution. The result? Journeys that ditch the cookie-cutter mold and feel intuitively <em>yours</em>.
+                    We&apos;re adventurers, yes - the kind who&apos;ve felt the rush of paragliding and the awe of skydiving. But more than that, we&apos;re travellers just like you. We combine Himanshu&apos;s knack for strategy with Kanishka&apos;s passion for flawless execution. The result? Journeys that ditch the cookie-cutter mold and feel intuitively <em>yours</em>.
                  </p>
                   <p className={styles.promiseText}>
                      <strong>Our Promise:</strong> Think of us as your personal travel designers. We listen intently, craft thoughtfully, and build unforgettable realities around your dreams.

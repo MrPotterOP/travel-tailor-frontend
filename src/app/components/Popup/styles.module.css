@@ -159,6 +159,10 @@
   opacity: 0.8; /* Match lead form */
 }
 
+.countrySelect {
+  max-height: fit-content;
+}
+
 .inputError {
   border-color: #d9534f; /* Match lead form error color */
 }
@@ -323,7 +327,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) { /* Match lead form breakpoint */
+@media (max-width: 768px) {
   .overlay {
     padding: 10px;
   }

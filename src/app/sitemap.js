@@ -8,7 +8,7 @@ async function fetchSlugs(endpoint) {
       headers: {
         'Authorization': `Bearer ${process.env.API_TOKEN}`
       },
-      // This will refetch the data in the background periodically
+
       next: {
         revalidate: 86400 // Revalidate daily (in seconds: 60*60*24)
       }

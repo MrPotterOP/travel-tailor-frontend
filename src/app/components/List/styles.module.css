@@ -1,5 +1,3 @@
-
-/* --- Main Layout Container --- */
 .container {
   display: flex;
   gap: calc(var(--pd-page) * 1.5); /* Space between sidebar and content */
