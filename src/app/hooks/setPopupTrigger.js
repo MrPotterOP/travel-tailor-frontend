@@ -1,6 +1,6 @@
 'use client';
-
 import { useState, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 
 const FORM_STATUS_KEY = 'formStatus';
 const STATUS = {
@@ -16,17 +16,39 @@ const DELAY_CONFIG = {
   [STATUS.EXIT_2]: 60,
 };
 
-export const usePopupTrigger = () => {
+export const usePopupTrigger = (excludedRoutes = [
+    '/tnc',
+    '/privacy-policy',
+    '/campaign/*',
+  ]) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Check if current route should be excluded
+  const isExcludedRoute = useCallback(() => {
+    return excludedRoutes.some(route => {
+      if (route.includes('*')) {
+        // Handle wildcard routes like '/campaign/*'
+        const baseRoute = route.replace('/*', '');
+        return pathname.startsWith(baseRoute);
+      }
+      return pathname === route;
+    });
+  }, [pathname, excludedRoutes]);
+
   useEffect(() => {
     if (typeof window === 'undefined' || !isMounted) {
+      return;
+    }
+
+    // Don't show popup on excluded routes
+    if (isExcludedRoute()) {
       return;
     }
 
@@ -51,7 +73,7 @@ export const usePopupTrigger = () => {
 
       return () => clearTimeout(timer);
     }
-  }, [isMounted, refreshTrigger]);
+  }, [isMounted, refreshTrigger, isExcludedRoute]);
 
   const handleClose = useCallback(() => {
     if (typeof window === 'undefined') return;
