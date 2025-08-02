@@ -30,6 +30,14 @@ function Footer() {
         {
             name: "Contact Us",
             url: "/contact"
+        },
+        {
+            name: "Privacy Policy",
+            url: "/privacy-policy"
+        },
+        {
+            name: "Terms & Conditions",
+            url: "/tnc"
         }
     ]
 
