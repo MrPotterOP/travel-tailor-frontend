@@ -11,7 +11,7 @@ function Tnc() {
     const data = [
   {
     "title": "Scope of Agreement",
-    "content": "This User Agreement (\"Agreement\") outlines the terms and conditions under which H&K Holidays LLP (\"H&K Holidays\") and its brand Travel Tailor provide services to individuals (\"User\") who intend to purchase or inquire about any products and/or services offered by H&K Holidays, whether through our website Traveltailor.in or any other customer interface channels. Each of H&K Holidays and the User is individually referred to as a \"party,\" and collectively as the \"parties.\""
+    "content": "This User Agreement (\"Agreement\") outlines the terms and conditions under which H&K Holidays LLP (\"H&K Holidays\") and its brand Travel Tailor provide services to individuals (\"User\") who intend to purchase or inquire about any products and/or services offered by H&K Holidays, whether through our website \\l\\Traveltailor.in|https://traveltailor.in \n\nor any other customer interface channels. Each of H&K Holidays and the User is individually referred to as a \"party,\" and collectively as the \"parties.\""
   },
   {
     "title": "Acceptance of Terms",

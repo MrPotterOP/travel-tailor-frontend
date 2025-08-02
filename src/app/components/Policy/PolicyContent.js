@@ -28,7 +28,7 @@ const PolicyContent = ({ sections }) => {
           const [text, href] = chunk.slice(3).split('|');
           return (
             <span key={`l-${i}-${j}`}>
-              <a href={href} target="_blank" rel="noopener noreferrer">
+              <a href={href} target="_blank" rel="noopener noreferrer" className={styles.linkIn}>
                 {text}
               </a>
             </span>

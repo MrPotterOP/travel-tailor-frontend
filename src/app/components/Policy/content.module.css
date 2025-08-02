@@ -125,6 +125,10 @@
   color: var(--color-grey);
 }
 
+.linkIn {
+  color: var(--color-primary);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .contentSection {
